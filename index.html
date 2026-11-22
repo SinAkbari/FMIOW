@@ -1,0 +1,2934 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>فریال</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: "Kalameh";
+      src: url("https://cdn.jsdelivr.net/gh/AmirAbbasVafaee/persian-fonts-cdn@main/fonts/kalameh/KalamehWeb(FaNum)-Light.woff2") format("woff2");
+      font-weight: 300; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Kalameh";
+      src: url("https://cdn.jsdelivr.net/gh/AmirAbbasVafaee/persian-fonts-cdn@main/fonts/kalameh/KalamehWeb(FaNum)-Regular.woff2") format("woff2");
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Kalameh";
+      src: url("https://cdn.jsdelivr.net/gh/AmirAbbasVafaee/persian-fonts-cdn@main/fonts/kalameh/KalamehWeb(FaNum)-Medium.woff2") format("woff2");
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Kalameh";
+      src: url("https://cdn.jsdelivr.net/gh/AmirAbbasVafaee/persian-fonts-cdn@main/fonts/kalameh/KalamehWeb(FaNum)-SemiBold.woff2") format("woff2");
+      font-weight: 600; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Kalameh";
+      src: url("https://cdn.jsdelivr.net/gh/AmirAbbasVafaee/persian-fonts-cdn@main/fonts/kalameh/KalamehWeb(FaNum)-Bold.woff2") format("woff2");
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Kalameh";
+      src: url("https://cdn.jsdelivr.net/gh/AmirAbbasVafaee/persian-fonts-cdn@main/fonts/kalameh/KalamehWeb(FaNum)-Black.woff2") format("woff2");
+      font-weight: 900; font-style: normal; font-display: swap;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --elevated: #1c1917;
+      --accent: #c5a572;
+      --cta: #ca8a04;
+      --ivory: #f5f0e8;
+      --muted: #a8a29e;
+      --hairline: rgba(197, 165, 114, 0.22);
+      --ease-cine: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+      --radius: 14px;
+      --radius-sm: 10px;
+      --font-fa: "Kalameh", Tahoma, sans-serif;
+      --font-en-display: "Cormorant", Georgia, serif;
+      --font-en: "Montserrat", system-ui, sans-serif;
+      --max: 1360px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ivory);
+      font-family: var(--font-fa);
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; cursor: pointer; }
+    button { font-family: inherit; cursor: pointer; }
+
+    .latin { font-family: var(--font-en); }
+    .latin-display { font-family: var(--font-en-display); font-style: italic; }
+
+    /* ——— Nav ——— */
+    .nav {
+      position: fixed;
+      z-index: 50;
+      top: 1rem;
+      right: 1rem;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      transition: background 280ms var(--ease-soft), border-color 280ms ease, backdrop-filter 280ms ease, transform 400ms var(--ease-cine);
+    }
+    .nav.is-solid {
+      background: rgba(10, 10, 10, 0.82);
+      border-color: var(--hairline);
+      backdrop-filter: blur(14px);
+    }
+    .nav-brand {
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--ivory);
+      opacity: 0.9;
+    }
+    .nav-brand span {
+      font-family: var(--font-en-display);
+      font-style: italic;
+      color: var(--accent);
+      margin-right: 0.35rem;
+      font-size: 1.05rem;
+    }
+    .nav-links {
+      display: none;
+      gap: 1.75rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+    .nav-links a {
+      position: relative;
+      transition: color 200ms ease;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -4px;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 320ms var(--ease-cine);
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--accent); outline: none; }
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after { width: 100%; }
+    .nav-cta {
+      display: none;
+      background: transparent;
+      color: var(--ivory);
+      border: 1px solid var(--hairline);
+      padding: 0.55rem 1.2rem;
+      font-size: 0.85rem;
+      border-radius: var(--radius-sm);
+      transition: border-color 200ms ease, color 200ms ease, background 200ms ease, transform 200ms ease;
+    }
+    .nav-cta:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .nav-toggle {
+      background: none;
+      border: 1px solid var(--hairline);
+      color: var(--ivory);
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: var(--radius-sm);
+      display: grid;
+      place-items: center;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 14px;
+      height: 1px;
+      background: currentColor;
+      box-shadow: 0 4px 0 currentColor, 0 -4px 0 currentColor;
+    }
+    @media (min-width: 900px) {
+      .nav-links, .nav-cta { display: flex; }
+      .nav-toggle { display: none; }
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(10, 10, 10, 0.97);
+      padding: 5rem 1.5rem 2rem;
+      flex-direction: column;
+      gap: 1.5rem;
+      opacity: 0;
+      transition: opacity 320ms ease;
+    }
+    .mobile-menu.is-open { display: flex; opacity: 1; }
+    .mobile-menu a {
+      font-size: 1.35rem;
+      font-weight: 500;
+      border-bottom: 1px solid var(--hairline);
+      padding-bottom: 0.75rem;
+      transform: translateY(12px);
+      opacity: 0;
+      animation: menuIn 450ms var(--ease-cine) forwards;
+    }
+    .mobile-menu a:nth-child(2) { animation-delay: 60ms; }
+    .mobile-menu a:nth-child(3) { animation-delay: 120ms; }
+    .mobile-menu a:nth-child(4) { animation-delay: 180ms; }
+    .mobile-menu a:nth-child(5) { animation-delay: 240ms; }
+    .mobile-close {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      background: none;
+      border: 1px solid var(--hairline);
+      color: var(--ivory);
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: var(--radius-sm);
+    }
+    @keyframes menuIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ——— Hero ——— */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      grid-template-columns: 1fr;
+      overflow: hidden;
+    }
+    @media (min-width: 960px) {
+      .hero {
+        direction: ltr;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      }
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 52vh;
+      isolation: isolate;
+    }
+    @media (min-width: 960px) {
+      .hero-visual { min-height: 100vh; }
+    }
+
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 35%, rgba(10, 10, 10, 0.25) 70%, rgba(10, 10, 10, 0.85) 100%),
+        linear-gradient(0deg, rgba(10, 10, 10, 0.5) 0%, transparent 40%, rgba(10, 10, 10, 0.2) 100%),
+        radial-gradient(ellipse 65% 55% at 40% 40%, rgba(197, 165, 114, 0.2), transparent 62%),
+        url("assets/hero-guitar.jpg") center 28% / cover no-repeat;
+      transform: scale(1.05);
+      will-change: transform;
+      animation: heroBreath 12s var(--ease-soft) infinite alternate;
+    }
+    @keyframes heroBreath {
+      from { transform: scale(1.05); }
+      to { transform: scale(1.09) translate(-1%, 0.5%); }
+    }
+
+    .hero-stage-glow {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 45% 35% at 35% 40%, rgba(202, 138, 4, 0.14), transparent 70%),
+        radial-gradient(ellipse 80% 50% at 50% 100%, rgba(10, 10, 10, 0.9), transparent 55%);
+      pointer-events: none;
+      animation: glowPulse 6s ease-in-out infinite alternate;
+    }
+    @keyframes glowPulse {
+      from { opacity: 0.75; }
+      to { opacity: 1; }
+    }
+
+    /* Footer guitar neck — photo headstock + fretted neck */
+    .footer-staff {
+      position: relative;
+      height: clamp(110px, 14vh, 140px);
+      overflow: visible;
+      /* bottom solid brown → top soft brown (never full black/transparent) */
+      background:
+        linear-gradient(
+          0deg,
+          #14110e 0%,
+          rgba(28, 23, 18, 0.92) 42%,
+          rgba(40, 33, 26, 0.62) 78%,
+          rgba(46, 38, 30, 0.32) 100%
+        );
+      border-bottom: 1px solid rgba(197, 165, 114, 0.16);
+      border-top: 0;
+    }
+    .footer-staff .guitar-headstock {
+      position: absolute;
+      z-index: 6;
+      left: 0;
+      top: 82%;
+      transform: translateY(-50%) scale(1.4);
+      transform-origin: left center;
+      height: clamp(118px, 15.5vh, 158px);
+      width: auto;
+      pointer-events: none;
+      filter: drop-shadow(8px 3px 16px rgba(0, 0, 0, 0.35));
+    }
+    .footer-staff .guitar-headstock img {
+      height: 100%;
+      width: auto;
+      display: block;
+      /* tip left, nut toward frets */
+      transform: scaleX(-1);
+      transform-origin: center;
+      user-select: none;
+      -webkit-user-drag: none;
+      /* very slight top soft-edge — keep wood visible */
+      -webkit-mask-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.72) 0%,
+        #000 10%,
+        #000 100%
+      );
+      mask-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.72) 0%,
+        #000 10%,
+        #000 100%
+      );
+    }
+    .footer-staff .strings {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .footer-staff .strings-hit {
+      position: absolute;
+      z-index: 3;
+      left: clamp(140px, 18vw, 260px);
+      right: 0;
+      /* top/height set in JS to cover all 6 strings */
+      top: 0;
+      height: 100%;
+      touch-action: none;
+      cursor: default;
+    }
+    .footer-staff svg.fstrings {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    .footer-staff path.string-line {
+      fill: none;
+      stroke: #cfc6b4;
+      /* width comes from data-w / JS — do not lock here */
+      stroke-linecap: round;
+      opacity: 0.92;
+      filter: none;
+      vector-effect: non-scaling-stroke;
+    }
+    .footer-staff .fret-mark {
+      stroke: rgba(210, 190, 150, 0.38);
+      stroke-width: 2.2;
+      vector-effect: non-scaling-stroke;
+    }
+    .footer-staff .fret-dot {
+      fill: rgba(197, 165, 114, 0.55);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 1.35rem 4.5rem;
+      background: var(--bg);
+      direction: rtl;
+      text-align: right;
+    }
+    @media (max-width: 959px) {
+      .hero-visual {
+        min-height: 46vh;
+      }
+      .hero-photo {
+        background:
+          linear-gradient(180deg, transparent 58%, rgba(10, 10, 10, 0.35) 82%, var(--bg) 100%),
+          radial-gradient(ellipse 65% 55% at 40% 40%, rgba(197, 165, 114, 0.16), transparent 62%),
+          url("assets/hero-guitar.jpg") center 28% / cover no-repeat;
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+      .hero-stage-glow {
+        background: linear-gradient(180deg, transparent 70%, rgba(10, 10, 10, 0.4) 90%, var(--bg) 100%);
+      }
+      .hero-copy {
+        padding-top: 1.1rem;
+        margin-top: 0;
+        z-index: 4;
+      }
+      .hero-kicker,
+      .hero-title {
+        text-align: right;
+        align-self: stretch;
+      }
+      .hero-lead {
+        text-align: center;
+        margin-inline: auto;
+        max-width: 36ch;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-copy > .latin {
+        text-align: center;
+      }
+    }
+    @media (min-width: 960px) {
+      .hero-copy {
+        padding: 6rem 3.5rem 6rem 3rem;
+        background: linear-gradient(90deg, rgba(10, 10, 10, 0.1) 0%, var(--bg) 26%);
+      }
+      .hero-copy::before {
+        content: "";
+        position: absolute;
+        top: 0; bottom: 0;
+        left: -14vw;
+        width: 14vw;
+        background: linear-gradient(90deg, transparent, var(--bg));
+        pointer-events: none;
+      }
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--accent);
+      margin: 0 0 1.25rem;
+      opacity: 0;
+      animation: rise 700ms var(--ease-cine) 100ms forwards;
+    }
+    .hero-title {
+      margin: 0;
+      font-size: clamp(2.35rem, 5.6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      max-width: 16ch;
+      opacity: 0;
+      animation: rise 900ms var(--ease-cine) 180ms forwards;
+    }
+    .hero-title .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(1.1em);
+      animation: wordUp 780ms var(--ease-cine) forwards;
+    }
+    .hero-title .word:nth-child(1) { animation-delay: 220ms; }
+    .hero-title .word:nth-child(2) { animation-delay: 300ms; }
+    .hero-title .word:nth-child(3) { animation-delay: 380ms; }
+    .hero-title .word:nth-child(4) { animation-delay: 460ms; }
+    @keyframes wordUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-lead {
+      margin: 1.35rem 0 0;
+      max-width: 44ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.85;
+      opacity: 0;
+      animation: rise 900ms var(--ease-cine) 520ms forwards;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 2.25rem;
+      opacity: 0;
+      animation: rise 900ms var(--ease-cine) 620ms forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.95rem 1.55rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      transition: background 220ms ease, color 220ms ease, border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .btn-primary {
+      background: var(--cta);
+      color: #0a0a0a;
+      box-shadow: 0 8px 28px rgba(202, 138, 4, 0.22);
+    }
+    .btn-primary:hover {
+      background: #d4a017;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(202, 138, 4, 0.32);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--ivory);
+      border-color: var(--hairline);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ——— Sections ——— */
+    .section {
+      position: relative;
+      padding: clamp(4.5rem, 10vh, 8rem) 1.35rem;
+      border-top: 1px solid var(--hairline);
+    }
+    #path.section {
+      padding-top: clamp(2.75rem, 6vh, 4.5rem);
+      padding-bottom: clamp(3.5rem, 8vh, 6rem);
+    }
+    .section-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .section-label {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 400;
+      margin: 0 0 0.75rem;
+    }
+    .section-title {
+      margin: 0;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.35;
+      max-width: 16ch;
+    }
+    .section-text {
+      margin: 1.1rem 0 0;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 38ch;
+      font-size: 1.02rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 800ms var(--ease-cine), transform 800ms var(--ease-cine);
+    }
+    .reveal.is-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 80ms; }
+    .reveal-delay-2 { transition-delay: 160ms; }
+    .reveal-delay-3 { transition-delay: 240ms; }
+
+    /* Bleed media — fades into page like hero */
+    .bleed-media {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0;
+      background: var(--bg);
+    }
+    .bleed-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.82) contrast(1.06);
+      transform: scale(1.04);
+      transition: transform 1.1s var(--ease-cine);
+    }
+    .bleed-media.is-in img,
+    .bleed-media:hover img { transform: scale(1.07); }
+    .bleed-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      /* fade LEFT edge into page */
+      background:
+        linear-gradient(90deg, var(--bg) 0%, rgba(10, 10, 10, 0.7) 14%, transparent 42%),
+        linear-gradient(0deg, var(--bg) 0%, transparent 35%, transparent 70%, rgba(10, 10, 10, 0.4) 100%);
+    }
+    .bleed-media.fade-right::after {
+      background:
+        linear-gradient(90deg, transparent 50%, rgba(10, 10, 10, 0.55) 82%, var(--bg) 100%),
+        linear-gradient(0deg, var(--bg) 0%, transparent 38%, transparent 68%, rgba(10, 10, 10, 0.4) 100%);
+    }
+    .bleed-media.fade-bottom::after {
+      background:
+        linear-gradient(0deg, var(--bg) 0%, transparent 42%),
+        linear-gradient(90deg, transparent 60%, rgba(10, 10, 10, 0.4) 100%);
+    }
+
+    /* Path — copy+steps fill right; image fills left (no empty top-left) */
+    .path-grid {
+      display: grid;
+      gap: 1.75rem;
+      align-items: stretch;
+    }
+    @media (min-width: 900px) {
+      .path-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 2.5rem;
+        min-height: 520px;
+      }
+    }
+    .path-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0;
+    }
+    .path-copy .section-title { max-width: 14ch; }
+    .path-copy .section-text {
+      max-width: 36ch;
+      margin-bottom: 1.75rem;
+    }
+    .path-media {
+      aspect-ratio: 16 / 11;
+      min-height: 260px;
+    }
+    @media (max-width: 899px) {
+      .path-grid {
+        gap: 1.35rem;
+      }
+      .path-media {
+        aspect-ratio: 5 / 3;
+        min-height: 0;
+        border-radius: 2px;
+      }
+      .path-media::after {
+        background: linear-gradient(180deg, transparent 55%, rgba(10, 10, 10, 0.45) 82%, var(--bg) 100%);
+      }
+      .path-copy {
+        gap: 0.15rem;
+      }
+      .path-copy .section-label,
+      .path-copy .section-title {
+        text-align: right;
+        margin-inline: 0;
+        max-width: none;
+      }
+      .path-copy .section-text {
+        text-align: center;
+        margin-inline: auto;
+        margin-bottom: 1.35rem;
+        max-width: 32ch;
+      }
+      .path-steps {
+        text-align: center;
+        margin-inline: auto;
+        max-width: 32ch;
+        gap: 0.95rem;
+        width: 100%;
+      }
+      .path-step {
+        border-top: 0;
+        padding-top: 0;
+        padding-right: 1rem;
+        text-align: right;
+      }
+      .path-step strong {
+        display: block;
+        margin-bottom: 0.35rem;
+      }
+      .path-step.is-in,
+      .path-step:hover {
+        transform: none;
+        border-color: var(--accent);
+      }
+    }
+    @media (min-width: 900px) {
+      .path-media {
+        aspect-ratio: auto;
+        min-height: 100%;
+        height: 100%;
+      }
+    }
+    .path-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: auto;
+    }
+    .path-step {
+      border-right: 1px solid var(--hairline);
+      padding-right: 1.15rem;
+      border-left: 0;
+      padding-left: 0;
+      border-top: 0;
+      transition: border-color 250ms ease, transform 350ms var(--ease-cine);
+    }
+    .path-step.is-in,
+    .path-step:hover {
+      border-color: var(--accent);
+      transform: translateX(-4px);
+    }
+    .path-step strong {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .path-step span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 300;
+    }
+
+    /* Piano feature band — content anchored to TOP */
+    .piano-band {
+      position: relative;
+      min-height: min(68vh, 600px);
+      display: grid;
+      align-items: start;
+      overflow: hidden;
+      border-top: 1px solid var(--hairline);
+    }
+    .piano-band-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 40% at 55% 45%, rgba(197, 165, 114, 0.16), transparent 65%),
+        url("assets/piano.jpg") center 40% / cover no-repeat;
+      transform: scale(1.06);
+      will-change: transform;
+    }
+    .piano-band::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(90deg, var(--bg) 0%, rgba(10, 10, 10, 0.45) 32%, transparent 62%),
+        linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, transparent 38%, transparent 70%, rgba(10, 10, 10, 0.5) 100%);
+      pointer-events: none;
+    }
+    .piano-band-copy {
+      position: relative;
+      z-index: 2;
+      padding: clamp(2.25rem, 5vh, 3.5rem) 1.35rem 2rem;
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
+    }
+    .piano-band-copy .section-title { max-width: 16ch; }
+    .piano-band-copy .section-text { max-width: 42ch; }
+    @media (max-width: 899px) {
+      .piano-band {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        align-items: stretch;
+        gap: 0;
+      }
+      .piano-band-bg {
+        position: relative;
+        inset: auto;
+        height: clamp(200px, 48vw, 260px);
+        min-height: 200px;
+        transform: none !important;
+        will-change: auto;
+        flex-shrink: 0;
+      }
+      .piano-band-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 40%, rgba(10, 10, 10, 0.5) 78%, var(--bg) 100%);
+        pointer-events: none;
+      }
+      .piano-band::after { display: none; }
+      .piano-band-copy {
+        position: relative;
+        background: var(--bg);
+        padding: 1.5rem 1.25rem 2.5rem;
+        z-index: 2;
+        max-width: none;
+        margin: 0;
+      }
+      .piano-band-copy .section-label,
+      .piano-band-copy .section-title {
+        text-align: right;
+        max-width: none;
+        margin-inline: 0;
+      }
+      .piano-band-copy .section-text {
+        text-align: center;
+        margin-inline: auto;
+        max-width: 32ch;
+        line-height: 1.85;
+      }
+      .piano-band-copy .hero-actions {
+        justify-content: center;
+        margin-top: 1.35rem !important;
+      }
+    }
+
+    /* Teachers — editorial gallery, not identical SaaS cards */
+    @media (max-width: 899px) {
+      #teachers .section-label,
+      #teachers .section-title {
+        text-align: right;
+        max-width: none;
+        margin-inline: 0;
+      }
+      #teachers .section-text {
+        text-align: center;
+        margin-inline: auto;
+        max-width: 32ch;
+      }
+      .ambient-notes { display: none; }
+    }
+    .teachers-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+      margin-top: 2.5rem;
+    }
+    @media (min-width: 900px) {
+      .teachers-row {
+        grid-template-columns: 1.3fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 1rem;
+        min-height: 560px;
+      }
+      .teacher:nth-child(1) {
+        grid-row: 1 / 3;
+        grid-column: 1;
+      }
+    }
+    .teacher {
+      position: relative;
+      margin: 0;
+      width: 100%;
+      overflow: hidden;
+      background: #121212;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius);
+      cursor: pointer;
+      isolation: isolate;
+      opacity: 0;
+      transform: translateY(20px);
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 0;
+      transition:
+        opacity 700ms var(--ease-cine),
+        transform 700ms var(--ease-cine),
+        border-color 250ms ease;
+    }
+    .teacher.is-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (min-width: 900px) {
+      .teacher {
+        display: block;
+        aspect-ratio: auto;
+        background: #0a0a0a;
+        border: 0;
+        clip-path: inset(12% 8% 12% 8%);
+        transform: translateY(28px);
+        min-height: 0;
+        transition:
+          opacity 900ms var(--ease-cine),
+          transform 900ms var(--ease-cine),
+          clip-path 1100ms var(--ease-cine);
+      }
+      .teacher.is-in {
+        clip-path: inset(0 0 0 0);
+        transform: translateY(0);
+      }
+      .teacher:nth-child(1) { height: 100%; min-height: 560px; }
+      .teacher:nth-child(n + 2) { min-height: 0; height: 100%; }
+    }
+    .teacher:nth-child(1).is-in { transition-delay: 0ms; }
+    .teacher:nth-child(2).is-in { transition-delay: 80ms; }
+    .teacher:nth-child(3).is-in { transition-delay: 140ms; }
+    .teacher:nth-child(4).is-in { transition-delay: 200ms; }
+    .teacher:nth-child(5).is-in { transition-delay: 260ms; }
+
+    .teacher-media {
+      position: relative;
+      overflow: hidden;
+      background: #000;
+      aspect-ratio: 4 / 3;
+      min-height: 0;
+    }
+    .teacher-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 12%;
+      filter: none;
+      display: block;
+      transform: none;
+      transition: filter 450ms ease, transform 900ms var(--ease-cine);
+    }
+    @media (min-width: 900px) {
+      .teacher-media {
+        position: absolute;
+        inset: 0;
+        min-height: 0;
+      }
+      .teacher-media img {
+        object-position: center 8%;
+        transform: scale(1.02);
+      }
+      .teacher.is-in .teacher-media img { transform: scale(1); }
+      .teacher:hover .teacher-media img,
+      .teacher:focus-within .teacher-media img {
+        filter: brightness(0.55);
+        transform: scale(1.03);
+      }
+    }
+
+    .teacher-shade,
+    .teacher-frame,
+    .teacher-icon {
+      display: none;
+    }
+    @media (min-width: 900px) {
+      .teacher-shade {
+        display: block;
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.75) 82%, #000 100%);
+        transition: background 400ms ease;
+      }
+      .teacher:hover .teacher-shade,
+      .teacher:focus-within .teacher-shade {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.45) 50%, #000 100%);
+      }
+      .teacher-frame {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        inset: 12px;
+        border: 1px solid transparent;
+        border-radius: calc(var(--radius) - 4px);
+        pointer-events: none;
+        transition: border-color 400ms ease, inset 400ms var(--ease-cine);
+      }
+      .teacher:hover .teacher-frame,
+      .teacher:focus-within .teacher-frame {
+        border-color: rgba(197, 165, 114, 0.45);
+        inset: 10px;
+      }
+      .teacher-icon {
+        display: grid;
+      }
+    }
+
+    .teacher figcaption {
+      position: relative;
+      z-index: 3;
+      padding: 1rem 1.1rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.15rem;
+      opacity: 1;
+      transform: none;
+      text-align: right;
+      background: #141414;
+    }
+    @media (min-width: 900px) {
+      .teacher figcaption {
+        position: absolute;
+        right: 0; left: 0; bottom: 0;
+        padding: 1.5rem 1.15rem 1.2rem;
+        transform: translateY(10px);
+        opacity: 0.85;
+        display: block;
+        gap: 0;
+        background: transparent;
+        text-align: right;
+        transition: transform 500ms var(--ease-cine), opacity 400ms ease;
+      }
+      .teacher.is-in figcaption {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: 280ms;
+      }
+      .teacher:hover figcaption,
+      .teacher:focus-within figcaption {
+        transform: translateY(-4px);
+      }
+    }
+    .teacher figcaption strong {
+      display: block;
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+    @media (min-width: 900px) {
+      .teacher:nth-child(1) figcaption strong { font-size: clamp(1.15rem, 2vw, 1.45rem); }
+    }
+    .teacher figcaption span {
+      display: inline-block;
+      margin-top: 0.35rem;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 400;
+      position: relative;
+      padding-right: 0;
+    }
+    .teacher figcaption span::before {
+      content: "";
+      display: inline-block;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      vertical-align: middle;
+      margin-left: 0.55rem;
+      transition: width 450ms var(--ease-cine);
+    }
+    .teacher:hover figcaption span::before,
+    .teacher:focus-within figcaption span::before {
+      width: 1.5rem;
+    }
+    .teacher-link {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      border-radius: inherit;
+    }
+    .teacher-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* Instrument icon — desktop hover only */
+    @media (min-width: 900px) {
+      .teacher-icon {
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        left: 50%;
+        width: auto;
+        height: auto;
+        place-items: center;
+        background: none;
+        border: 0;
+        border-radius: 0;
+        color: var(--accent);
+        opacity: 0;
+        transform: translate(-50%, -42%) scale(0.88);
+        filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 18px rgba(197, 165, 114, 0.35));
+        transition:
+          opacity 420ms var(--ease-cine),
+          transform 520ms var(--ease-cine);
+        pointer-events: none;
+      }
+      .teacher:hover .teacher-icon,
+      .teacher:focus-within .teacher-icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+    .teacher-icon svg {
+      width: 3.4rem;
+      height: 3.4rem;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      overflow: visible;
+    }
+    .teacher:nth-child(1) .teacher-icon svg {
+      width: 4rem;
+      height: 4rem;
+    }
+    .teacher-icon .pulse,
+    .teacher-icon .mini-note { display: none; }
+
+    /* per-instrument motion while hovered */
+    .teacher:hover .icon-piano,
+    .teacher:focus-within .icon-piano {
+      animation: pianoPlay 1.1s ease-in-out infinite;
+    }
+    .teacher:hover .icon-piano .key-up,
+    .teacher:focus-within .icon-piano .key-up {
+      animation: keyBob 0.9s ease-in-out infinite;
+    }
+    .teacher:hover .icon-piano .key-up:nth-child(2),
+    .teacher:focus-within .icon-piano .key-up:nth-child(2) { animation-delay: 0.12s; }
+    .teacher:hover .icon-piano .key-up:nth-child(3),
+    .teacher:focus-within .icon-piano .key-up:nth-child(3) { animation-delay: 0.24s; }
+
+    .teacher:hover .icon-guitar,
+    .teacher:focus-within .icon-guitar {
+      animation: guitarSway 1.4s var(--ease-cine) infinite;
+      transform-origin: 70% 20%;
+    }
+
+    .teacher:hover .icon-violin,
+    .teacher:focus-within .icon-violin {
+      animation: violinNod 1.3s var(--ease-cine) infinite;
+      transform-origin: 50% 80%;
+    }
+
+    .teacher:hover .icon-voice .wave,
+    .teacher:focus-within .icon-voice .wave {
+      animation: voiceWave 1.2s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .teacher:hover .icon-voice .wave:nth-child(2),
+    .teacher:focus-within .icon-voice .wave:nth-child(2) { animation-delay: 0.15s; }
+    .teacher:hover .icon-voice .wave:nth-child(3),
+    .teacher:focus-within .icon-voice .wave:nth-child(3) { animation-delay: 0.3s; }
+
+    .teacher:hover .icon-flute,
+    .teacher:focus-within .icon-flute {
+      animation: fluteFloat 1.5s var(--ease-cine) infinite;
+    }
+
+    @keyframes pianoPlay {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(2px); }
+    }
+    @keyframes keyBob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(1.5px); }
+    }
+    @keyframes guitarSway {
+      0%, 100% { transform: rotate(-4deg); }
+      50% { transform: rotate(5deg); }
+    }
+    @keyframes violinNod {
+      0%, 100% { transform: rotate(-3deg) translateY(0); }
+      50% { transform: rotate(4deg) translateY(-2px); }
+    }
+    @keyframes voiceWave {
+      0%, 100% { opacity: 0.45; transform: scale(0.92); }
+      50% { opacity: 1; transform: scale(1.08); }
+    }
+    @keyframes fluteFloat {
+      0%, 100% { transform: translateX(0) rotate(-6deg); }
+      50% { transform: translateX(3px) rotate(6deg); }
+    }
+
+    /* touch devices: no forced hover-icons; mobile uses card layout */
+
+    /* Concert */
+    .concert {
+      margin-top: 3rem;
+      display: grid;
+      gap: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+    @media (min-width: 900px) {
+      .concert { grid-template-columns: 1.35fr 1fr; }
+    }
+    .concert-visual {
+      position: relative;
+      min-height: 300px;
+      background:
+        radial-gradient(ellipse 50% 40% at 50% 30%, rgba(197, 165, 114, 0.18), transparent 65%),
+        url("assets/concert.jpg") center / cover no-repeat;
+    }
+    .concert-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 40%, rgba(10, 10, 10, 0.55) 100%),
+        linear-gradient(0deg, var(--bg) 0%, transparent 40%);
+    }
+    .concert-body {
+      padding: 2rem 1.5rem;
+      background: linear-gradient(180deg, rgba(20, 20, 20, 0.4), var(--bg));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    @media (min-width: 900px) {
+      .concert-body {
+        padding: 2.75rem;
+        background: linear-gradient(270deg, var(--bg) 55%, transparent);
+      }
+    }
+    .concert-body h3 {
+      margin: 0;
+      font-size: clamp(1.45rem, 2.5vw, 2rem);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    .concert-meta {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 300;
+      margin: 0;
+    }
+    .concert-body .btn { align-self: flex-start; margin-top: 0.75rem; }
+
+    /* Floating ambient notes */
+    .ambient-notes {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .ambient-notes span {
+      position: absolute;
+      color: var(--accent);
+      font-family: var(--font-en-display), serif;
+      font-size: 1.1rem;
+      opacity: 0;
+      animation: driftNote 14s linear infinite;
+    }
+    .ambient-notes span:nth-child(1) { right: 12%; top: 70%; animation-delay: 0s; font-size: 1.4rem; }
+    .ambient-notes span:nth-child(2) { right: 40%; top: 85%; animation-delay: 4s; }
+    .ambient-notes span:nth-child(3) { right: 70%; top: 75%; animation-delay: 8s; font-size: 1.25rem; }
+    @keyframes driftNote {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.35; }
+      70% { opacity: 0.2; }
+      100% { transform: translateY(-55vh) rotate(18deg); opacity: 0; }
+    }
+
+    /* ——— About (copy + animated staff) ——— */
+    .about-split {
+      margin-top: 2.5rem;
+      display: grid;
+      gap: 2rem;
+      align-items: stretch;
+    }
+    @media (min-width: 960px) {
+      .about-split {
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 2.5rem;
+      }
+    }
+    .about-visual {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      min-height: 340px;
+      border: 1px solid var(--hairline);
+      background:
+        linear-gradient(160deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.82) 55%, rgba(10, 10, 10, 0.92) 100%),
+        radial-gradient(ellipse 70% 55% at 35% 30%, rgba(197, 165, 114, 0.22), transparent 60%),
+        url("assets/path.jpg") center 45% / cover no-repeat;
+    }
+    @media (min-width: 960px) {
+      .about-visual { min-height: 100%; }
+    }
+    .about-staff {
+      position: absolute;
+      inset: 14% 10% 22% 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .about-staff span {
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(197, 165, 114, 0.55), transparent);
+    }
+    .about-float-note {
+      position: absolute;
+      color: var(--accent);
+      opacity: 0.85;
+      z-index: 2;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.55));
+      animation: noteFloat 5.5s var(--ease-soft) infinite;
+    }
+    .about-float-note svg { width: 100%; height: 100%; display: block; }
+    .afn-1 { width: 3.1rem; top: 16%; right: 16%; animation-delay: 0s; }
+    .afn-2 { width: 2.5rem; top: 40%; left: 14%; animation-delay: 1.2s; }
+    .afn-3 { width: 3.4rem; bottom: 24%; right: 24%; animation-delay: 2.1s; }
+    .afn-4 { width: 2.2rem; top: 26%; left: 36%; opacity: 0.55; animation-delay: 0.7s; }
+    @keyframes noteFloat {
+      0%, 100% { transform: translateY(0) rotate(-4deg); opacity: 0.7; }
+      50% { transform: translateY(-16px) rotate(5deg); opacity: 1; }
+    }
+    .about-visual-caption {
+      position: absolute;
+      z-index: 2;
+      right: 1.25rem;
+      bottom: 1.15rem;
+      left: 1.25rem;
+      color: rgba(245, 240, 232, 0.82);
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+    .about-intro {
+      margin-bottom: 1.5rem;
+    }
+    .about-intro h2 {
+      margin: 0 0 0.55rem;
+      font-size: clamp(1.85rem, 3.4vw, 2.55rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--ivory);
+    }
+    .about-intro .about-sub {
+      margin: 0 0 1.35rem;
+      color: var(--muted);
+      font-weight: 300;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+    .about-benefits {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .about-benefit {
+      padding: 1.15rem 1.25rem;
+      border-radius: 18px;
+      border: 1px solid var(--hairline);
+      background: rgba(20, 20, 20, 0.92);
+      transition: border-color 250ms ease, transform 300ms var(--ease-cine);
+    }
+    .about-benefit:hover {
+      border-color: rgba(197, 165, 114, 0.45);
+      transform: translateY(-2px);
+    }
+    .about-benefit h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--ivory);
+    }
+    .about-benefit p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 300;
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+
+    /* ——— Learn chapters (note markers) ——— */
+    .learn-head {
+      display: grid;
+      gap: 1.25rem;
+      align-items: end;
+      margin-bottom: 0.25rem;
+    }
+    @media (min-width: 900px) {
+      .learn-head {
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+      .learn-head-copy { grid-column: 1; }
+      .learn-head-art { grid-column: 2; }
+    }
+    .learn-head-art {
+      position: relative;
+      min-height: 7.5rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--hairline);
+      background:
+        radial-gradient(ellipse 70% 80% at 30% 40%, rgba(197, 165, 114, 0.16), transparent 60%),
+        rgba(20, 20, 20, 0.7);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.4rem;
+      color: var(--accent);
+    }
+    .learn-head-art span {
+      display: block;
+      width: 1.7rem;
+      opacity: 0.55;
+      animation: noteFloat 4.8s var(--ease-soft) infinite;
+    }
+    .learn-head-art span:nth-child(2) { width: 2rem; opacity: 0.85; animation-delay: 0.6s; }
+    .learn-head-art span:nth-child(3) { width: 2.2rem; opacity: 0.7; animation-delay: 1.2s; }
+    .learn-head-art span:nth-child(4) { width: 2.4rem; opacity: 0.5; animation-delay: 1.8s; }
+    .learn-head-art svg { width: 100%; height: auto; display: block; }
+    .learn-rail {
+      margin-top: 1.75rem;
+      display: grid;
+      gap: 1.75rem;
+    }
+    @media (min-width: 900px) {
+      .learn-rail {
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 2rem;
+        align-items: stretch;
+        min-height: 460px;
+      }
+    }
+    .learn-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      height: 100%;
+    }
+    @media (min-width: 900px) {
+      .learn-tabs { justify-content: space-between; }
+    }
+    .learn-tab {
+      display: flex;
+      align-items: center;
+      gap: 0.95rem;
+      width: 100%;
+      flex: 1;
+      background: rgba(20, 20, 20, 0.55);
+      border: 1px solid transparent;
+      border-right: 2px solid transparent;
+      color: var(--muted);
+      padding: 1.05rem 1rem;
+      text-align: right;
+      cursor: pointer;
+      transition: color 250ms ease, border-color 250ms ease, background 250ms ease;
+      border-radius: var(--radius-sm);
+      min-height: 4.5rem;
+    }
+    .learn-tab:hover { color: var(--ivory); background: rgba(28, 28, 28, 0.85); border-color: rgba(197, 165, 114, 0.18); }
+    .learn-tab.is-active {
+      color: var(--ivory);
+      border-color: rgba(197, 165, 114, 0.28);
+      border-right-color: var(--accent);
+      background: linear-gradient(270deg, rgba(197, 165, 114, 0.12), rgba(20, 20, 20, 0.7));
+    }
+    .learn-tab .lt-note {
+      flex-shrink: 0;
+      width: 2.2rem;
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      transition: transform 380ms var(--ease-cine);
+      transform-origin: center 60%;
+    }
+    .learn-tab:hover .lt-note,
+    .learn-tab:focus-visible .lt-note {
+      transform: rotate(45deg);
+    }
+    .learn-tab .lt-note svg {
+      width: 1.85rem;
+      height: 2.45rem;
+      display: block;
+      filter: drop-shadow(0 0 6px rgba(197, 165, 114, 0.35));
+    }
+    .learn-tab .lt-title {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.45;
+    }
+    .learn-stage {
+      position: relative;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius);
+      padding: clamp(1.75rem, 4vw, 2.75rem);
+      background:
+        radial-gradient(ellipse 80% 70% at 100% 0%, rgba(197, 165, 114, 0.12), transparent 55%),
+        var(--surface);
+      overflow: hidden;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .learn-stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          180deg,
+          transparent 0,
+          transparent 18%,
+          rgba(197, 165, 114, 0.06) 18%,
+          rgba(197, 165, 114, 0.06) calc(18% + 1px)
+        );
+      opacity: 0.55;
+      pointer-events: none;
+      mask-image: linear-gradient(90deg, transparent, #000 30%, #000 80%, transparent);
+    }
+    .learn-stage-mark {
+      position: absolute;
+      left: 8%;
+      top: 10%;
+      width: clamp(4.5rem, 12vw, 7rem);
+      color: rgba(197, 165, 114, 0.14);
+      pointer-events: none;
+    }
+    .learn-stage-mark svg { width: 100%; height: auto; display: block; }
+    .learn-pane {
+      position: relative;
+      z-index: 1;
+      display: none;
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    .learn-pane.is-active {
+      display: block;
+      animation: paneIn 500ms var(--ease-cine) forwards;
+    }
+    @keyframes paneIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .learn-pane .lp-kicker {
+      color: var(--accent);
+      font-size: 0.8rem;
+      margin: 0 0 0.75rem;
+    }
+    .learn-pane h3 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-weight: 700;
+      line-height: 1.35;
+      max-width: 16ch;
+    }
+    .learn-pane p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 300;
+      font-size: 1.02rem;
+      line-height: 1.9;
+      max-width: 40ch;
+    }
+    .learn-pane .lp-meta {
+      margin-top: 1.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--hairline);
+      color: var(--accent);
+      font-size: 0.82rem;
+    }
+
+    /* ——— Features (khonyagar: media + 2×2) ——— */
+    .features-head {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .features-ornament {
+      display: flex;
+      justify-content: center;
+      gap: 0.55rem;
+      margin-bottom: 0.85rem;
+    }
+    .features-ornament span {
+      width: 0.55rem;
+      height: 0.55rem;
+      background: rgba(197, 165, 114, 0.55);
+      transform: rotate(45deg);
+      border-radius: 1px;
+    }
+    .features-layout {
+      margin-top: 2rem;
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 960px) {
+      .features-layout {
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 1.5rem;
+        align-items: stretch;
+      }
+    }
+    .features-media {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      min-height: 280px;
+      border: 1px solid var(--hairline);
+      background:
+        radial-gradient(ellipse 50% 45% at 50% 30%, rgba(197, 165, 114, 0.16), transparent 60%),
+        url("assets/features-luxury3.jpg") center 40% / cover no-repeat;
+    }
+    .features-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(10, 10, 10, 0.5) 100%);
+      pointer-events: none;
+    }
+    @media (min-width: 960px) {
+      .features-media { min-height: 100%; order: 2; }
+      .features-grid { order: 1; }
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 560px) {
+      .features-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .feat-card {
+      border: 1px solid var(--hairline);
+      border-radius: 18px;
+      padding: 1.35rem 1.25rem 1.4rem;
+      background: rgba(20, 20, 20, 0.95);
+      transition: border-color 250ms ease, transform 300ms var(--ease-cine);
+    }
+    .feat-card:hover {
+      border-color: rgba(197, 165, 114, 0.48);
+      transform: translateY(-3px);
+    }
+    .feat-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+      background: rgba(197, 165, 114, 0.12);
+      border: 1px solid rgba(197, 165, 114, 0.28);
+      color: var(--accent);
+    }
+    .feat-icon svg { width: 1.35rem; height: 1.35rem; }
+    .feat-card h3 {
+      margin: 0 0 0.45rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .feat-card p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 300;
+      font-size: 0.88rem;
+      line-height: 1.75;
+    }
+
+    /* ——— Voices: stacked cards + drag ——— */
+    .voices-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      text-align: center;
+    }
+    .voices-head .vh-leaf {
+      width: 28px;
+      height: 40px;
+      opacity: 0.55;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .voices-head h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      font-weight: 700;
+    }
+    .voices-band {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .voices-slider {
+      position: relative;
+      min-height: 320px;
+      padding: 0 1.75rem 0.5rem;
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+    }
+    .voices-slider.is-dragging { cursor: grabbing; }
+    .voice-slide {
+      position: absolute;
+      inset: 0 auto auto 1.75rem;
+      width: calc(100% - 3.5rem);
+      border: 1px solid var(--hairline);
+      border-radius: 22px;
+      padding: clamp(1.5rem, 4vw, 2.25rem);
+      background:
+        radial-gradient(ellipse 70% 60% at 100% 0%, rgba(197, 165, 114, 0.1), transparent 55%),
+        #161616;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      transition: transform 420ms var(--ease-cine), opacity 320ms ease, filter 320ms ease;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(20px) scale(0.9);
+      z-index: 1;
+    }
+    .voice-slide.is-active {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+      z-index: 5;
+      pointer-events: auto;
+      filter: none;
+    }
+    .voice-slide.is-behind-1 {
+      opacity: 0.92;
+      transform: translateX(-2.6rem) translateY(12px) scale(0.94) rotate(-4deg);
+      z-index: 4;
+      filter: brightness(0.8);
+      border-color: rgba(197, 165, 114, 0.35);
+    }
+    .voice-slide.is-behind-2 {
+      opacity: 0.78;
+      transform: translateX(2.8rem) translateY(18px) scale(0.91) rotate(4deg);
+      z-index: 3;
+      filter: brightness(0.68);
+      border-color: rgba(197, 165, 114, 0.25);
+    }
+    .voice-slide.is-behind-3 {
+      opacity: 0.5;
+      transform: translateX(-3.4rem) translateY(28px) scale(0.87) rotate(-5deg);
+      z-index: 2;
+      filter: brightness(0.52);
+      border-color: rgba(197, 165, 114, 0.14);
+    }
+    .voices-slider.is-dragging .voice-slide.is-active {
+      transition: none;
+    }
+    .voice-top {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .voice-avatar {
+      width: 3.1rem;
+      height: 3.1rem;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 1px solid rgba(197, 165, 114, 0.35);
+      background: #1a1a1a;
+      flex-shrink: 0;
+      pointer-events: none;
+    }
+    .voice-meta strong {
+      display: block;
+      font-size: 1.02rem;
+      font-weight: 600;
+    }
+    .voice-meta span {
+      color: var(--accent);
+      font-size: 0.82rem;
+    }
+    .voice-quote-mark {
+      display: block;
+      font-family: var(--font-en-display), Georgia, serif;
+      font-size: 2.4rem;
+      line-height: 1;
+      color: var(--cta);
+      margin: 0.15rem 0 0.35rem;
+    }
+    .voice-slide blockquote {
+      margin: 0;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-weight: 300;
+      line-height: 1.95;
+      color: rgba(245, 240, 232, 0.92);
+      text-align: center;
+    }
+    .voices-controls {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.15rem;
+    }
+    .voices-dots {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .voices-dots button {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 999px;
+      border: 0;
+      padding: 0;
+      background: rgba(197, 165, 114, 0.28);
+      cursor: pointer;
+      transition: transform 200ms ease, background 200ms ease;
+    }
+    .voices-dots button.is-active {
+      background: var(--accent);
+      transform: scale(1.25);
+    }
+    .voices-all {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(197, 165, 114, 0.55);
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+    }
+    .voices-all:hover {
+      background: rgba(197, 165, 114, 0.12);
+      border-color: var(--accent);
+      color: var(--ivory);
+    }
+    .voices-nav-hidden { display: none; }
+
+    /* ——— Site footer ——— */
+    .site-footer {
+      border-top: 1px solid var(--hairline);
+      padding: 0 1.35rem 2rem;
+      background: #070707;
+    }
+    .site-footer .footer-staff {
+      margin-inline: -1.35rem;
+      margin-top: 0;
+      margin-bottom: clamp(1.75rem, 4vh, 2.75rem);
+      z-index: 2;
+    }
+    .site-footer .site-footer-inner {
+      padding-top: clamp(1.25rem, 3vh, 2rem);
+    }
+    .site-footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      gap: 2.5rem;
+    }
+    @media (min-width: 800px) {
+      .site-footer-inner {
+        grid-template-columns: 1.2fr 1fr 1fr 1fr;
+        gap: 2rem;
+      }
+    }
+    .sf-brand {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 0 0 0.75rem;
+    }
+    .sf-brand span {
+      font-family: var(--font-en-display);
+      font-style: italic;
+      color: var(--accent);
+      margin-left: 0.35rem;
+    }
+    .sf-text {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 300;
+      font-size: 0.9rem;
+      max-width: 28ch;
+      line-height: 1.8;
+    }
+    .sf-col h3 {
+      margin: 0 0 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .sf-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .sf-col a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 300;
+      transition: color 200ms ease;
+    }
+    .sf-col a:hover { color: var(--accent); }
+    .sf-contact p {
+      margin: 0 0 0.65rem;
+      color: var(--muted);
+      font-weight: 300;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .sf-social {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .sf-social a {
+      width: 2.4rem;
+      height: 2.4rem;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-sm);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      transition: border-color 200ms ease, background 200ms ease;
+    }
+    .sf-social a:hover {
+      border-color: var(--accent);
+      background: rgba(197, 165, 114, 0.08);
+    }
+    .sf-social svg {
+      width: 1rem;
+      height: 1rem;
+      fill: currentColor;
+    }
+    .sf-bottom {
+      max-width: var(--max);
+      margin: 2.5rem auto 0;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--hairline);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 300;
+    }
+
+    .footer {
+      display: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal, .hero-kicker, .hero-title, .hero-lead, .hero-actions,
+      .hero-title .word, .teacher, .teacher figcaption, .mobile-menu a {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        clip-path: none !important;
+      }
+      .teacher-media img { transform: none !important; }
+      .icon-piano, .icon-guitar, .icon-violin, .icon-voice .wave, .icon-flute,
+      .icon-piano .key-up { animation: none !important; }
+      .ambient-notes, .hero-photo, .hero-stage-glow { animation: none !important; }
+      .note-mark { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-notes" aria-hidden="true">
+    <span>♪</span><span>♫</span><span>♩</span>
+  </div>
+
+  <header class="nav" id="nav">
+    <a class="nav-brand" href="#top"><span>Feryal</span> فریال</a>
+    <ul class="nav-links">
+      <li><a href="#about">درباره فریال</a></li>
+      <li><a href="#features">ویژگی‌ها</a></li>
+      <li><a href="#teachers">استادان</a></li>
+      <li><a href="#voices">دیدگاه‌ها</a></li>
+      <li><a href="#concert">کنسرت‌ها</a></li>
+    </ul>
+    <a class="nav-cta" href="login.html">ورود به پورتال</a>
+    <button class="nav-toggle" type="button" aria-label="منو" id="menuOpen"><span></span></button>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <button class="mobile-close" type="button" id="menuClose" aria-label="بستن">×</button>
+    <a href="#about">درباره فریال</a>
+    <a href="#learn">یادگیری</a>
+    <a href="#features">ویژگی‌ها</a>
+    <a href="#teachers">استادان</a>
+    <a href="#voices">دیدگاه‌ها</a>
+    <a href="#concert">کنسرت‌ها</a>
+    <a href="login.html">ورود به پورتال</a>
+  </div>
+
+  <main id="top">
+    <section class="hero" aria-label="هیرو">
+      <div class="hero-visual" id="heroVisual">
+        <div class="hero-photo" id="heroPhoto"></div>
+        <div class="hero-stage-glow"></div>
+      </div>
+
+      <div class="hero-copy">
+        <p class="hero-kicker">آکادمی موسیقی فریال</p>
+        <h1 class="hero-title">
+          <span class="word">جایی</span>
+          <span class="word">که</span>
+          <span class="word">موسیقی</span>
+          <span class="word">نفس می‌کشد</span>
+        </h1>
+        <p class="hero-lead">
+          آموزش تخصصی، انضباط هنری و تجربهٔ صحنه — در فضایی سینمایی و دقیق برای نسلی که می‌شنود و می‌سازد.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#path">ثبت‌نام هنرجو</a>
+          <a class="btn btn-ghost" href="#concert">مشاهده کنسرت‌ها</a>
+        </div>
+        <p class="latin" style="margin-top:2rem;font-size:0.72rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;">
+          Music Academy · <span class="latin-display" style="text-transform:none;letter-spacing:0;font-size:1rem;">Feryal</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="path">
+      <div class="section-inner path-grid">
+        <div class="bleed-media path-media reveal" id="pathMedia">
+          <img src="assets/path.jpg" alt="فضای تمرین و سازها" width="1400" height="960" />
+        </div>
+        <div class="path-copy">
+          <p class="section-label reveal">۰۱ — مسیر</p>
+          <h2 class="section-title reveal reveal-delay-1">از تمرین خاموش تا شب اجرا</h2>
+          <p class="section-text reveal reveal-delay-2">
+            مسیر یادگیری فریال خطی و شتاب‌زده نیست؛ لایه‌به‌لایه پیش می‌رود — گوش، بدن، ساز، و صحنه.
+          </p>
+          <div class="path-steps">
+            <div class="path-step reveal reveal-delay-1">
+              <strong>شنیدن دقیق</strong>
+              <span>پرورش گوش و زبان موسیقایی پیش از تکنیک صرف.</span>
+            </div>
+            <div class="path-step reveal reveal-delay-2">
+              <strong>استاد و شاگرد</strong>
+              <span>جلسات حضوری با بازخورد شخصی و مسیر اختصاصی.</span>
+            </div>
+            <div class="path-step reveal reveal-delay-3">
+              <strong>حضور روی صحنه</strong>
+              <span>اجرا، کنسرت داخلی و آرشیو تصویری برای رشد مداوم.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="piano-band" id="piano" aria-label="پیانو">
+      <div class="piano-band-bg" id="pianoBg"></div>
+      <div class="piano-band-copy">
+        <p class="section-label reveal">۰۲ — ساز</p>
+        <h2 class="section-title reveal reveal-delay-1">پیانو؛ ستون خاموش هارمونی</h2>
+        <p class="section-text reveal reveal-delay-2">
+          از اولین لمس کلاویه تا اجرای روی صحنه — پیانو در فریال هم زبان مشترک است، هم مسیر تخصصی.
+        </p>
+        <div class="hero-actions reveal reveal-delay-3" style="margin-top:1.75rem;">
+          <a class="btn btn-ghost" href="#teachers">آشنایی با استادان پیانو</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="teachers">
+      <div class="section-inner">
+        <p class="section-label reveal">۰۳ — استادان</p>
+        <h2 class="section-title reveal reveal-delay-1">چهره‌هایی که مسیر را روشن می‌کنند</h2>
+        <p class="section-text reveal reveal-delay-2">اساتید منتخب فریال — چهره، ساز، و مسیر تخصصی هر کدام.</p>
+        <div class="teachers-row">
+          <figure class="teacher">
+            <div class="teacher-media">
+              <img src="assets/teacher1.jpg" alt="سارا محمدی — پیانو" width="900" height="1200" />
+            </div>
+            <div class="teacher-shade" aria-hidden="true"></div>
+            <div class="teacher-frame" aria-hidden="true"></div>
+            <div class="teacher-icon" aria-hidden="true" title="پیانو">
+              <svg class="icon-piano" viewBox="0 0 48 48" aria-hidden="true">
+                <rect x="4" y="22" width="40" height="18" rx="2" fill="rgba(197,165,114,0.12)" />
+                <rect x="4" y="22" width="40" height="18" rx="2" />
+                <path class="key-up" d="M10 22 V12 h5 V22" fill="rgba(197,165,114,0.2)" />
+                <path class="key-up" d="M18 22 V10 h5 V22" fill="rgba(197,165,114,0.2)" />
+                <path class="key-up" d="M26 22 V12 h5 V22" fill="rgba(197,165,114,0.2)" />
+                <path d="M34 22 V14 h5 V22" />
+                <path d="M8 30 h4 M16 30 h4 M24 30 h4 M32 30 h4 M40 30 h2" opacity="0.7" />
+              </svg>
+            </div>
+            <figcaption>
+              <strong>سارا محمدی</strong>
+              <span>پیانو</span>
+            </figcaption>
+            <a class="teacher-link" href="#teachers" aria-label="سارا محمدی، استاد پیانو"></a>
+          </figure>
+          <figure class="teacher">
+            <div class="teacher-media">
+              <img src="assets/teacher2.jpg" alt="علی رضایی — گیتار کلاسیک" width="900" height="1200" />
+            </div>
+            <div class="teacher-shade" aria-hidden="true"></div>
+            <div class="teacher-frame" aria-hidden="true"></div>
+            <div class="teacher-icon" aria-hidden="true" title="گیتار">
+              <svg class="icon-guitar" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M18 28c-4 4-5.2 8.2-2.8 10.6S23 40 27 36s5.2-8.2 2.8-10.6S22 24 18 28Z" fill="rgba(197,165,114,0.14)" />
+                <path d="M18 28c-4 4-5.2 8.2-2.8 10.6S23 40 27 36s5.2-8.2 2.8-10.6S22 24 18 28Z" />
+                <circle cx="21.5" cy="31.5" r="2.4" fill="rgba(197,165,114,0.25)" />
+                <circle cx="21.5" cy="31.5" r="2.4" />
+                <path d="M25 25 L38 6" />
+                <path d="M35 8 L41 13" />
+                <path d="M29 17 L27 20 M32 12.5 L30.5 15" opacity="0.75" />
+              </svg>
+            </div>
+            <figcaption>
+              <strong>علی رضایی</strong>
+              <span>گیتار کلاسیک</span>
+            </figcaption>
+            <a class="teacher-link" href="#teachers" aria-label="علی رضایی، استاد گیتار"></a>
+          </figure>
+          <figure class="teacher">
+            <div class="teacher-media">
+              <img src="assets/teacher3.jpg" alt="نیلوفر احمدی — ویولن" width="900" height="1200" />
+            </div>
+            <div class="teacher-shade" aria-hidden="true"></div>
+            <div class="teacher-frame" aria-hidden="true"></div>
+            <div class="teacher-icon" aria-hidden="true" title="ویولن">
+              <svg class="icon-violin" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M16 30c-3 3-3.8 6.6-1.6 8.8s5.8 1.4 8.8-1.6 3.8-6.6 1.6-8.8-5.8-1.4-8.8 1.6Z" fill="rgba(197,165,114,0.14)" />
+                <path d="M16 30c-3 3-3.8 6.6-1.6 8.8s5.8 1.4 8.8-1.6 3.8-6.6 1.6-8.8-5.8-1.4-8.8 1.6Z" />
+                <path d="M23 26 L36 7" />
+                <path d="M33 9 L39 14" />
+                <path d="M20 29 L25 24" />
+                <path d="M14 37 L10 42" />
+                <path d="M18 33.5 h4 M17 35.5 h5" opacity="0.7" />
+              </svg>
+            </div>
+            <figcaption>
+              <strong>نیلوفر احمدی</strong>
+              <span>ویولن</span>
+            </figcaption>
+            <a class="teacher-link" href="#teachers" aria-label="نیلوفر احمدی، استاد ویولن"></a>
+          </figure>
+          <figure class="teacher">
+            <div class="teacher-media">
+              <img src="assets/teacher4.jpg" alt="مهسا کریمی — آواز" width="900" height="1200" style="object-position:center 20%" />
+            </div>
+            <div class="teacher-shade" aria-hidden="true"></div>
+            <div class="teacher-frame" aria-hidden="true"></div>
+            <div class="teacher-icon" aria-hidden="true" title="آواز">
+              <svg class="icon-voice" viewBox="0 0 48 48" aria-hidden="true">
+                <rect x="18" y="10" width="12" height="20" rx="6" fill="rgba(197,165,114,0.16)" />
+                <rect x="18" y="10" width="12" height="20" rx="6" />
+                <path d="M24 30 V36" />
+                <path d="M17 36 H31" />
+                <path class="wave" d="M33 16c2.2 1.5 3.5 3.6 3.5 6s-1.3 4.5-3.5 6" />
+                <path class="wave" d="M37 13c3.2 2.2 5 5.2 5 9s-1.8 6.8-5 9" />
+                <path class="wave" d="M15 16c-2.2 1.5-3.5 3.6-3.5 6s1.3 4.5 3.5 6" />
+              </svg>
+            </div>
+            <figcaption>
+              <strong>مهسا کریمی</strong>
+              <span>آواز</span>
+            </figcaption>
+            <a class="teacher-link" href="#teachers" aria-label="مهسا کریمی، استاد آواز"></a>
+          </figure>
+          <figure class="teacher">
+            <div class="teacher-media">
+              <img src="assets/teacher5.jpg" alt="کیان پارسائی — فلوت" width="900" height="1200" />
+            </div>
+            <div class="teacher-shade" aria-hidden="true"></div>
+            <div class="teacher-frame" aria-hidden="true"></div>
+            <div class="teacher-icon" aria-hidden="true" title="فلوت">
+              <svg class="icon-flute" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M6 30 L42 14" stroke-width="2.2" />
+                <path d="M10 28.5 L12 27.7 M16 26.3 L18 25.5 M22 24 L24 23.2 M28 21.8 L30 21 M34 19.5 L36 18.7" stroke-width="1.8" />
+                <circle cx="14" cy="27.2" r="1.1" fill="currentColor" stroke="none" />
+                <circle cx="20" cy="24.8" r="1.1" fill="currentColor" stroke="none" />
+                <circle cx="26" cy="22.4" r="1.1" fill="currentColor" stroke="none" />
+                <circle cx="32" cy="20" r="1.1" fill="currentColor" stroke="none" />
+                <path d="M40 12.5 L44 16" />
+              </svg>
+            </div>
+            <figcaption>
+              <strong>کیان پارسائی</strong>
+              <span>فلوت</span>
+            </figcaption>
+            <a class="teacher-link" href="#teachers" aria-label="کیان پارسائی، استاد فلوت"></a>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-inner">
+        <p class="section-label reveal">۰۴ — درباره</p>
+        <div class="about-split reveal reveal-delay-1">
+          <div class="about-copy">
+            <div class="about-intro">
+              <h2>فریال چیست؟</h2>
+              <p class="about-sub">و چگونه به ما در فراگیری موسیقی کمک می‌کند</p>
+              <a class="btn btn-primary" href="login.html">نام‌نویسی کنید</a>
+            </div>
+            <ul class="about-benefits">
+              <li class="about-benefit">
+                <h3>از بهترین‌ها می‌آموزید</h3>
+                <p>دیگر محدود به مربیان اطراف خود نیستید؛ با فریال، از استادان دقیق و باتجربه در فضایی حرفه‌ای بیاموزید.</p>
+              </li>
+              <li class="about-benefit">
+                <h3>رفع اشکال می‌کنید</h3>
+                <p>تمرین و سوال خود را در کلاس مطرح می‌کنید؛ استاد دقیق بررسی می‌کند و پاسخی روشن و کاربردی می‌دهد.</p>
+              </li>
+              <li class="about-benefit">
+                <h3>پول و زمان را جدی می‌گیرید</h3>
+                <p>با برنامهٔ منظم و بدون اتلاف، مسیر پیشرفت شفاف می‌ماند — هر جلسه یک قدم مشخص به‌سوی اجرا.</p>
+              </li>
+              <li class="about-benefit">
+                <h3>درست و مطمئن آموزش می‌بینید</h3>
+                <p>محتوا و روش تدریس فریال با دقت هنری تنظیم شده؛ خیالتان راحت است که مسیر اشتباه نمی‌روید.</p>
+              </li>
+            </ul>
+          </div>
+          <div class="about-visual" aria-hidden="true">
+            <div class="about-staff">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="about-float-note afn-1">
+              <svg viewBox="0 0 24 40" fill="currentColor"><ellipse cx="8" cy="32" rx="6.5" ry="4.5" transform="rotate(-18 8 32)"/><rect x="13.2" y="6" width="2.2" height="26"/><path d="M15.4 6c4 2.2 6.2 5.2 6.2 9.2 0 2.6-1.2 4.6-3.4 6.2"/></svg>
+            </div>
+            <div class="about-float-note afn-2">
+              <svg viewBox="0 0 24 40" fill="currentColor"><ellipse cx="8" cy="32" rx="6.5" ry="4.5" transform="rotate(-18 8 32)"/><rect x="13.2" y="6" width="2.2" height="26"/><path d="M15.4 6c3.6 1.8 5.6 4.4 5.6 7.8"/><path d="M15.4 11c3.6 1.8 5.6 4.4 5.6 7.8"/></svg>
+            </div>
+            <div class="about-float-note afn-3">
+              <svg viewBox="0 0 28 40" fill="currentColor"><ellipse cx="7" cy="32" rx="6" ry="4.2" transform="rotate(-18 7 32)"/><ellipse cx="18" cy="28" rx="6" ry="4.2" transform="rotate(-18 18 28)"/><rect x="11.8" y="8" width="2" height="24"/><rect x="22.8" y="4" width="2" height="24"/><rect x="11.8" y="8" width="13" height="2"/></svg>
+            </div>
+            <div class="about-float-note afn-4">
+              <svg viewBox="0 0 24 40" fill="currentColor"><ellipse cx="8" cy="32" rx="6.5" ry="4.5" transform="rotate(-18 8 32)"/><rect x="13.2" y="6" width="2.2" height="26"/><path d="M15.4 6c3.2 1.6 5 3.8 5 6.8"/><path d="M15.4 10.2c3.2 1.6 5 3.8 5 6.8"/><path d="M15.4 14.4c3.2 1.6 5 3.8 5 6.8"/></svg>
+            </div>
+            <p class="about-visual-caption">زبان مشترک گوش، بدن و صحنه</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="learn">
+      <div class="section-inner">
+        <div class="learn-head reveal">
+          <div class="learn-head-copy">
+            <p class="section-label">۰۵ — یادگیری</p>
+            <h2 class="section-title">با فریال چه یاد می‌گیرید؟</h2>
+            <p class="section-text">چهار فصل مسیر — از چنگ تا چهارلاچنگ؛ یکی را انتخاب کنید.</p>
+          </div>
+          <div class="learn-head-art" aria-hidden="true">
+            <span><svg viewBox="0 0 24 40" fill="currentColor"><ellipse cx="8" cy="32" rx="6.5" ry="4.5" transform="rotate(-18 8 32)"/><rect x="13.2" y="6" width="2.2" height="26"/><path d="M15.4 6c4 2.2 6.2 5.2 6.2 9.2 0 2.6-1.2 4.6-3.4 6.2"/></svg></span>
+            <span><svg viewBox="0 0 24 40" fill="currentColor"><ellipse cx="8" cy="32" rx="6.5" ry="4.5" transform="rotate(-18 8 32)"/><rect x="13.2" y="6" width="2.2" height="26"/><path d="M15.4 6c3.8 1.9 5.8 4.6 5.8 8.2"/><path d="M15.4 11c3.8 1.9 5.8 4.6 5.8 8.2"/></svg></span>
+            <span><svg viewBox="0 0 24 40" fill="currentColor"><ellipse cx="8" cy="32" rx="6.5" ry="4.5" transform="rotate(-18 8 32)"/><rect x="13.2" y="6" width="2.2" height="26"/><path d="M15.4 6c3.4 1.6 5.2 4 5.2 7.2"/><path d="M15.4 10c3.4 1.6 5.2 4 5.2 7.2"/><path d="M15.4 14c3.4 1.6 5.2 4 5.2 7.2"/></svg></span>
+            <span><svg viewBox="0 0 24 40" fill="currentColor"><ellipse cx="8" cy="32" rx="6.5" ry="4.5" transform="rotate(-18 8 32)"/><rect x="13.2" y="6" width="2.2" height="26"/><path d="M15.4 6c3 1.4 4.6 3.4 4.6 6.2"/><path d="M15.4 9.4c3 1.4 4.6 3.4 4.6 6.2"/><path d="M15.4 12.8c3 1.4 4.6 3.4 4.6 6.2"/><path d="M15.4 16.2c3 1.4 4.6 3.4 4.6 6.2"/></svg></span>
+          </div>
+        </div>
+        <div class="learn-rail reveal reveal-delay-1" id="learnRail">
+          <div class="learn-tabs" role="tablist" aria-label="فصل‌های یادگیری">
+            <button class="learn-tab is-active" type="button" role="tab" aria-selected="true" data-pane="0">
+              <span class="lt-note" aria-hidden="true" title="چنگ">
+                <svg viewBox="0 0 28 44" fill="currentColor"><ellipse cx="9" cy="35" rx="7.2" ry="5" transform="rotate(-20 9 35)"/><rect x="14.8" y="5" width="2.6" height="30"/><path d="M17.4 5c5.2 1.2 8.2 4.4 8.2 9.4 0 3.2-1.6 5.6-4.6 7.4L17.4 14.6z"/></svg>
+              </span>
+              <span class="lt-title">شنیدن و زبان موسیقایی</span>
+            </button>
+            <button class="learn-tab" type="button" role="tab" aria-selected="false" data-pane="1">
+              <span class="lt-note" aria-hidden="true" title="دولاچنگ">
+                <svg viewBox="0 0 28 44" fill="currentColor"><ellipse cx="9" cy="35" rx="7.2" ry="5" transform="rotate(-20 9 35)"/><rect x="14.8" y="5" width="2.6" height="30"/><path d="M17.4 5c4.8 1 7.6 3.8 7.6 8L17.4 11.2z"/><path d="M17.4 12.5c4.8 1 7.6 3.8 7.6 8L17.4 18.7z"/></svg>
+              </span>
+              <span class="lt-title">تکنیک ساز یا آواز</span>
+            </button>
+            <button class="learn-tab" type="button" role="tab" aria-selected="false" data-pane="2">
+              <span class="lt-note" aria-hidden="true" title="سه‌لاچنگ">
+                <svg viewBox="0 0 28 44" fill="currentColor"><ellipse cx="9" cy="35" rx="7.2" ry="5" transform="rotate(-20 9 35)"/><rect x="14.8" y="5" width="2.6" height="30"/><path d="M17.4 5c4.4 .9 7 3.4 7 7.2L17.4 10.4z"/><path d="M17.4 11.2c4.4 .9 7 3.4 7 7.2L17.4 16.6z"/><path d="M17.4 17.4c4.4 .9 7 3.4 7 7.2L17.4 22.8z"/></svg>
+              </span>
+              <span class="lt-title">رپرتوار و بیان هنری</span>
+            </button>
+            <button class="learn-tab" type="button" role="tab" aria-selected="false" data-pane="3">
+              <span class="lt-note" aria-hidden="true" title="چهارلاچنگ">
+                <svg viewBox="0 0 28 44" fill="currentColor"><ellipse cx="9" cy="35" rx="7.2" ry="5" transform="rotate(-20 9 35)"/><rect x="14.8" y="5" width="2.6" height="30"/><path d="M17.4 5c4 .8 6.4 3 6.4 6.4L17.4 9.6z"/><path d="M17.4 10.2c4 .8 6.4 3 6.4 6.4L17.4 14.8z"/><path d="M17.4 15.4c4 .8 6.4 3 6.4 6.4L17.4 20z"/><path d="M17.4 20.6c4 .8 6.4 3 6.4 6.4L17.4 25.2z"/></svg>
+              </span>
+              <span class="lt-title">حضور روی صحنه</span>
+            </button>
+          </div>
+          <div class="learn-stage">
+            <div class="learn-stage-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 40" fill="currentColor"><ellipse cx="8" cy="32" rx="6.5" ry="4.5" transform="rotate(-18 8 32)"/><rect x="13.2" y="6" width="2.2" height="26"/><path d="M15.4 6c4 2.2 6.2 5.2 6.2 9.2 0 2.6-1.2 4.6-3.4 6.2"/></svg>
+            </div>
+            <div class="learn-pane is-active" data-pane="0" role="tabpanel">
+              <p class="lp-kicker">فصل اول · چنگ</p>
+              <h3>گوش، پیش از انگشت</h3>
+              <p>پرورش گوش، ریتم، فواصل و درک جملهٔ موسیقایی — پیش از آن‌که تکنیک صرف جایگزین شنیدن شود.</p>
+              <p class="lp-meta">پایهٔ همهٔ مسیرهای ساز و آواز</p>
+            </div>
+            <div class="learn-pane" data-pane="1" role="tabpanel" hidden>
+              <p class="lp-kicker">فصل دوم · دولاچنگ</p>
+              <h3>بدنِ دقیقِ نوازنده</h3>
+              <p>تمرین بدنی دقیق، کنترل صدا یا کلاویه و سیم، و ساخت عادت‌های پایدار تمرین در خانه و کلاس.</p>
+              <p class="lp-meta">تکنیک شخصی‌سازی‌شده برای هر ساز</p>
+            </div>
+            <div class="learn-pane" data-pane="2" role="tabpanel" hidden>
+              <p class="lp-kicker">فصل سوم · سه‌لاچنگ</p>
+              <h3>روایت، نه فقط نت</h3>
+              <p>انتخاب قطعات متناسب با سطح، کار روی رنگ صدا، عبارت‌بندی و روایت موسیقایی — نه فقط نت‌خوانی خشک.</p>
+              <p class="lp-meta">از تمرین تا هویت صوتی</p>
+            </div>
+            <div class="learn-pane" data-pane="3" role="tabpanel" hidden>
+              <p class="lp-kicker">فصل چهارم · چهارلاچنگ</p>
+              <h3>نفسِ سالن</h3>
+              <p>آمادگی اجرا، مدیریت اضطراب صحنه، همنوازی و تجربهٔ واقعی کنسرت‌های داخلی فریال.</p>
+              <p class="lp-meta">پل مستقیم کلاس به صحنه</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-inner">
+        <div class="features-head reveal">
+          <div class="features-ornament" aria-hidden="true"><span></span><span></span><span></span></div>
+          <p class="section-label">۰۶ — ویژگی‌ها</p>
+          <h2 class="section-title">ویژگی‌های فریال</h2>
+        </div>
+        <div class="features-layout reveal reveal-delay-1">
+          <div class="features-grid">
+            <article class="feat-card">
+              <div class="feat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16v10H4z"/><path d="M8 11h2m4 0h2M9 17v2m6-2v2"/></svg>
+              </div>
+              <h3>پورتال هنرجو و استاد</h3>
+              <p>جلسات، تکالیف و پیگیری پیشرفت در یک فضای مرتب — شفاف برای هنرجو، دقیق برای استاد.</p>
+            </article>
+            <article class="feat-card">
+              <div class="feat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16v12H4z"/><path d="m9 10 6 3-6 3z"/></svg>
+              </div>
+              <h3>آرشیو ویدیوی کلاس</h3>
+              <p>مرور نکات هر جلسه هر زمان که تمرین خانه به یادآوری دقیق نیاز دارد.</p>
+            </article>
+            <article class="feat-card">
+              <div class="feat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h16v10H4z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/><circle cx="12" cy="13" r="1.2"/></svg>
+              </div>
+              <h3>مسیر شخصی‌سازی‌شده</h3>
+              <p>فقط همان بخشی از مسیر را پیش می‌برید که با ساز، سطح و هدف شما هم‌خوان است.</p>
+            </article>
+            <article class="feat-card">
+              <div class="feat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17V7l9-3v16z"/><path d="M12 4l9 3v10l-9 3"/><path d="M12 12h9"/></svg>
+              </div>
+              <h3>کنسرت و حضور روی صحنه</h3>
+              <p>اجراهای داخلی و رویداد عمومی با رزرو ساده — پل مستقیم کلاس به سالن.</p>
+            </article>
+          </div>
+          <div class="features-media" role="img" aria-label="جزئیات ساز زهی و آرشه"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="voices">
+      <div class="section-inner">
+        <p class="section-label reveal" style="text-align:center">۰۷ — دیدگاه‌ها</p>
+        <div class="voices-head reveal reveal-delay-1">
+          <svg class="vh-leaf" viewBox="0 0 28 40" fill="currentColor" aria-hidden="true"><path d="M14 2c6 8 10 14 10 22a10 10 0 0 1-20 0C4 16 8 10 14 2z"/></svg>
+          <h2>دیدگاه هنرجویان</h2>
+          <svg class="vh-leaf" viewBox="0 0 28 40" fill="currentColor" aria-hidden="true" style="transform:scaleX(-1)"><path d="M14 2c6 8 10 14 10 22a10 10 0 0 1-20 0C4 16 8 10 14 2z"/></svg>
+        </div>
+        <div class="voices-band reveal reveal-delay-2" id="voicesSlider">
+          <div class="voices-slider" id="voicesStack">
+            <article class="voice-slide is-active" data-i="0">
+              <div class="voice-top">
+                <img class="voice-avatar" src="assets/teacher1.jpg" alt="" />
+                <div class="voice-meta">
+                  <strong>آیدا موسوی</strong>
+                  <span>پیانو</span>
+                </div>
+              </div>
+              <span class="voice-quote-mark" aria-hidden="true">“</span>
+              <blockquote>خیلی خوب دارم پیش می‌رم. آموزش‌های فریال ثابت کرد بدون شتاب‌زدگی هم می‌شه موسیقی رو جدی و عمیق یاد گرفت.</blockquote>
+            </article>
+            <article class="voice-slide" data-i="1">
+              <div class="voice-top">
+                <img class="voice-avatar" src="assets/teacher2.jpg" alt="" />
+                <div class="voice-meta">
+                  <strong>رامین صالحی</strong>
+                  <span>گیتار کلاسیک</span>
+                </div>
+              </div>
+              <span class="voice-quote-mark" aria-hidden="true">“</span>
+              <blockquote>استاد دقیق است، اما خشن نیست. مسیرم شفاف شد و آرشیو ویدیوها کمک کرد تمرین خانه را درست پیش ببرم.</blockquote>
+            </article>
+            <article class="voice-slide" data-i="2">
+              <div class="voice-top">
+                <img class="voice-avatar" src="assets/teacher3.jpg" alt="" />
+                <div class="voice-meta">
+                  <strong>هستی نوری</strong>
+                  <span>آواز</span>
+                </div>
+              </div>
+              <span class="voice-quote-mark" aria-hidden="true">“</span>
+              <blockquote>کنسرت داخلی فریال نقطهٔ عطف بود. از کلاس تا اجرا فاصله‌ای نبود که بترسم؛ همه چیز مرحله‌به‌مرحله آماده شد.</blockquote>
+            </article>
+            <article class="voice-slide" data-i="3">
+              <div class="voice-top">
+                <img class="voice-avatar" src="assets/teacher5.jpg" alt="" />
+                <div class="voice-meta">
+                  <strong>نیما کرمی</strong>
+                  <span>ویولن</span>
+                </div>
+              </div>
+              <span class="voice-quote-mark" aria-hidden="true">“</span>
+              <blockquote>اینجا عجله‌ای برای نمایش نیست. اول گوش ساخته می‌شود، بعد انگشت؛ و همین باعث شد پیشرفتم ماندگار باشد.</blockquote>
+            </article>
+            <article class="voice-slide" data-i="4">
+              <div class="voice-top">
+                <img class="voice-avatar" src="assets/teacher4.jpg" alt="" />
+                <div class="voice-meta">
+                  <strong>سارا امینی</strong>
+                  <span>پیانو</span>
+                </div>
+              </div>
+              <span class="voice-quote-mark" aria-hidden="true">“</span>
+              <blockquote>زمان کاری‌ام متغیر بود؛ اما برنامهٔ فریال انقدر منظم و قابل‌پیگیری بود که بالاخره تونستم پیانو رو جدی ادامه بدم.</blockquote>
+            </article>
+          </div>
+          <div class="voices-controls">
+            <div class="voices-nav voices-nav-hidden">
+              <button type="button" id="voicePrev" aria-label="قبلی">→</button>
+              <button type="button" id="voiceNext" aria-label="بعدی">←</button>
+            </div>
+            <div class="voices-dots" id="voiceDots" aria-label="انتخاب دیدگاه"></div>
+            <a class="voices-all" href="#voices">مشاهده همه‌ی دیدگاه‌ها</a>
+            <span class="voices-nav-hidden" id="voiceCount">01 / 05</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="concert">
+      <div class="section-inner">
+        <p class="section-label reveal">۰۸ — اجرا</p>
+        <h2 class="section-title reveal reveal-delay-1">شب‌هایی که سالن نفس می‌کشد</h2>
+        <article class="concert reveal reveal-delay-2">
+          <div class="concert-visual bleed-media fade-bottom" role="img" aria-label="صحنه کنسرت"></div>
+          <div class="concert-body">
+            <h3>فصل زمستان — شب سازهای زهی و پیانو</h3>
+            <p class="concert-meta">پنجشنبه ۲۸ آذر · سالن اصلی فریال · ۱۹:۳۰</p>
+            <p class="concert-meta">بلیت محدود · اولویت با هنرجویان</p>
+            <a class="btn btn-primary" href="login.html">خرید بلیت</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-staff" id="stringsBridge" aria-label="دسته گیتار">
+      <div class="guitar-headstock" aria-hidden="true">
+        <img src="assets/guitar-headstock.png" alt="" width="1200" height="642" />
+      </div>
+      <div class="strings" aria-hidden="true">
+        <svg class="fstrings" id="stringsSvg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+          <line class="fret-mark" x1="120" y1="14" x2="120" y2="86" />
+          <line class="fret-mark" x1="250" y1="14" x2="250" y2="86" />
+          <line class="fret-mark" x1="390" y1="14" x2="390" y2="86" />
+          <line class="fret-mark" x1="540" y1="14" x2="540" y2="86" />
+          <line class="fret-mark" x1="700" y1="14" x2="700" y2="86" />
+          <line class="fret-mark" x1="860" y1="14" x2="860" y2="86" />
+          <circle class="fret-dot" cx="320" cy="50" r="2.2" />
+          <circle class="fret-dot" cx="465" cy="50" r="2.2" />
+          <circle class="fret-dot" cx="620" cy="34" r="1.8" />
+          <circle class="fret-dot" cx="620" cy="66" r="1.8" />
+          <circle class="fret-dot" cx="780" cy="50" r="2.2" />
+          <!-- top→bottom: bass 6–4 thick, treble 3–1 thin -->
+          <path class="string-line" data-w="2.45" d="M0 22 H1000" />
+          <path class="string-line" data-w="2.05" d="M0 34 H1000" />
+          <path class="string-line" data-w="1.65" d="M0 46 H1000" />
+          <path class="string-line" data-w="1.05" d="M0 58 H1000" />
+          <path class="string-line" data-w="0.85" d="M0 70 H1000" />
+          <path class="string-line" data-w="0.55" d="M0 82 H1000" />
+        </svg>
+      </div>
+      <div class="strings-hit" id="stringsHit"></div>
+    </div>
+    <div class="site-footer-inner">
+      <div>
+        <p class="sf-brand"><span>Feryal</span> فریال</p>
+        <p class="sf-text">آکادمی موسیقی فریال — آموزش تخصصی، صحنه، و مسیر هنری دقیق.</p>
+        <div class="sf-social" aria-label="شبکه‌های اجتماعی">
+          <a href="https://www.instagram.com/feryalmusic/" target="_blank" rel="noopener noreferrer" aria-label="اینستاگرام فریال">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm5 5.2A3.8 3.8 0 1 0 15.8 12 3.8 3.8 0 0 0 12 8.2zm6.2-.9a.9.9 0 1 0 .9.9.9.9 0 0 0-.9-.9zM12 9.5A2.5 2.5 0 1 1 9.5 12 2.5 2.5 0 0 1 12 9.5z"/></svg>
+          </a>
+          <a href="https://maps.app.goo.gl/pNbrsHgzuVrAh2NcA" target="_blank" rel="noopener noreferrer" aria-label="موقعیت روی نقشه">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="sf-col">
+        <h3>صفحات</h3>
+        <ul>
+          <li><a href="#about">درباره فریال</a></li>
+          <li><a href="#learn">یادگیری</a></li>
+          <li><a href="#teachers">استادان</a></li>
+          <li><a href="#concert">کنسرت‌ها</a></li>
+          <li><a href="login.html">ورود به پورتال</a></li>
+        </ul>
+      </div>
+      <div class="sf-col">
+        <h3>خدمات</h3>
+        <ul>
+          <li><a href="#features">ویژگی‌ها</a></li>
+          <li><a href="#voices">دیدگاه هنرجویان</a></li>
+          <li><a href="#path">مسیر یادگیری</a></li>
+        </ul>
+      </div>
+      <div class="sf-col sf-contact">
+        <h3>تماس</h3>
+        <p>تهران، فلکه اول تهران پارس، جنب بانک ایران زمین، پلاک ۲۷، طبقه دوم</p>
+        <p><a href="tel:+982177709067">۰۲۱-۷۷۷۰۹۰۶۷</a></p>
+        <p><a href="mailto:support@feryal.ir">support@feryal.ir</a></p>
+        <p>شنبه تا پنجشنبه · ۹ تا ۲۱</p>
+      </div>
+    </div>
+    <div class="sf-bottom">
+      <span>© ۱۴۰۵ آکادمی موسیقی فریال</span>
+      <span class="latin">(: Design by U Team</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const nav = document.getElementById("nav");
+      const onScroll = () => nav.classList.toggle("is-solid", window.scrollY > 40);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      const menu = document.getElementById("mobileMenu");
+      const openMenu = () => { menu.hidden = false; menu.classList.add("is-open"); };
+      const closeMenu = () => { menu.classList.remove("is-open"); menu.hidden = true; };
+      document.getElementById("menuOpen").addEventListener("click", openMenu);
+      document.getElementById("menuClose").addEventListener("click", closeMenu);
+      menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
+
+      /* Learn chapters */
+      const learnTabs = document.querySelectorAll("#learnRail .learn-tab");
+      const learnPanes = document.querySelectorAll("#learnRail .learn-pane");
+      learnTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const i = tab.dataset.pane;
+          learnTabs.forEach((t) => {
+            t.classList.toggle("is-active", t === tab);
+            t.setAttribute("aria-selected", t === tab ? "true" : "false");
+          });
+          learnPanes.forEach((p) => {
+            const on = p.dataset.pane === i;
+            p.classList.toggle("is-active", on);
+            p.hidden = !on;
+          });
+        });
+      });
+
+      /* Voices stacked cards + drag */
+      const slides = [...document.querySelectorAll("#voicesStack .voice-slide")];
+      const stack = document.getElementById("voicesStack");
+      const dotsWrap = document.getElementById("voiceDots");
+      const countEl = document.getElementById("voiceCount");
+      let voiceIndex = 0;
+      let voicePaused = false;
+      const pad = (n) => String(n).padStart(2, "0");
+
+      slides.forEach((_, i) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("aria-label", `دیدگاه ${i + 1}`);
+        if (i === 0) b.classList.add("is-active");
+        b.addEventListener("click", () => goVoice(i));
+        dotsWrap.appendChild(b);
+      });
+
+      function goVoice(i) {
+        voiceIndex = (i + slides.length) % slides.length;
+        slides.forEach((s) => {
+          s.classList.remove("is-active", "is-behind-1", "is-behind-2", "is-behind-3");
+          s.style.transform = "";
+        });
+        slides.forEach((s, idx) => {
+          const dist = (idx - voiceIndex + slides.length) % slides.length;
+          if (dist === 0) s.classList.add("is-active");
+          else if (dist === 1) s.classList.add("is-behind-1");
+          else if (dist === 2) s.classList.add("is-behind-2");
+          else if (dist === 3) s.classList.add("is-behind-3");
+        });
+        dotsWrap.querySelectorAll("button").forEach((d, idx) => d.classList.toggle("is-active", idx === voiceIndex));
+        countEl.textContent = `${pad(voiceIndex + 1)} / ${pad(slides.length)}`;
+      }
+      goVoice(0);
+
+      document.getElementById("voicePrev").addEventListener("click", () => goVoice(voiceIndex - 1));
+      document.getElementById("voiceNext").addEventListener("click", () => goVoice(voiceIndex + 1));
+
+      let dragX0 = null;
+      let dragDX = 0;
+      let draggingVoice = false;
+      const activeCard = () => slides.find((s) => s.classList.contains("is-active"));
+
+      const onVoiceDown = (e) => {
+        if (e.button != null && e.button !== 0) return;
+        draggingVoice = true;
+        voicePaused = true;
+        dragX0 = e.clientX;
+        dragDX = 0;
+        stack.classList.add("is-dragging");
+        stack.setPointerCapture?.(e.pointerId);
+      };
+      const onVoiceMove = (e) => {
+        if (!draggingVoice || dragX0 == null) return;
+        dragDX = e.clientX - dragX0;
+        const card = activeCard();
+        if (card) {
+          const rot = dragDX * 0.04;
+          card.style.transform = `translateX(${dragDX}px) rotate(${rot}deg)`;
+        }
+      };
+      const onVoiceUp = () => {
+        if (!draggingVoice) return;
+        draggingVoice = false;
+        stack.classList.remove("is-dragging");
+        const card = activeCard();
+        if (card) card.style.transform = "";
+        if (Math.abs(dragDX) > 70) {
+          /* RTL: drag left (negative) → next feels natural for stacked deck */
+          goVoice(voiceIndex + (dragDX < 0 ? 1 : -1));
+        }
+        dragX0 = null;
+        dragDX = 0;
+        setTimeout(() => { voicePaused = false; }, 1200);
+      };
+
+      stack.addEventListener("pointerdown", onVoiceDown);
+      window.addEventListener("pointermove", onVoiceMove);
+      window.addEventListener("pointerup", onVoiceUp);
+      window.addEventListener("pointercancel", onVoiceUp);
+
+      if (slides.length > 1 && !reduce) {
+        setInterval(() => {
+          if (!voicePaused && !draggingVoice) goVoice(voiceIndex + 1);
+        }, 7000);
+      }
+
+      /* Reveal + teachers */
+      const reveals = [
+        ...document.querySelectorAll(".reveal"),
+        ...document.querySelectorAll(".teacher"),
+        ...document.querySelectorAll(".bleed-media"),
+      ];
+      if (reduce) {
+        reveals.forEach((el) => el.classList.add("is-in"));
+      } else if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((en) => {
+              if (en.isIntersecting) {
+                en.target.classList.add("is-in");
+                io.unobserve(en.target);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -6% 0px" }
+        );
+        reveals.forEach((el) => io.observe(el));
+      } else {
+        reveals.forEach((el) => el.classList.add("is-in"));
+      }
+
+      /* Piano parallax (desktop only — mobile stacks image + copy) */
+      const pianoBg = document.getElementById("pianoBg");
+      const pianoBand = document.getElementById("piano");
+      const pianoDesktop = window.matchMedia("(min-width: 900px)");
+      if (pianoBg && pianoBand && !reduce) {
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (!pianoDesktop.matches) {
+              pianoBg.style.transform = "";
+              return;
+            }
+            const rect = pianoBand.getBoundingClientRect();
+            const view = window.innerHeight;
+            if (rect.bottom < 0 || rect.top > view) return;
+            const p = (view - rect.top) / (view + rect.height);
+            pianoBg.style.transform = `scale(1.08) translateY(${(p - 0.5) * 36}px)`;
+          },
+          { passive: true }
+        );
+      }
+
+      /* Hero photo mild parallax */
+      const heroVisual = document.getElementById("heroVisual");
+      const heroPhoto = document.getElementById("heroPhoto");
+      if (heroVisual && heroPhoto && !reduce) {
+        heroVisual.addEventListener("pointermove", (e) => {
+          if (e.pointerType === "touch") return;
+          const r = heroVisual.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          heroPhoto.style.animation = "none";
+          heroPhoto.style.transform = `scale(1.07) translate(${px * -14}px, ${py * -8}px)`;
+        }, { passive: true });
+        heroVisual.addEventListener("pointerleave", () => {
+          heroPhoto.style.animation = "";
+          heroPhoto.style.transform = "";
+        }, { passive: true });
+      }
+
+      /* Footer guitar neck — photo headstock + snappy pluck */
+      const bridge = document.getElementById("stringsBridge");
+      const hit = document.getElementById("stringsHit");
+      const svg = document.getElementById("stringsSvg");
+      const wantMotion = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+
+      if (bridge && svg && hit && wantMotion && !reduce) {
+        const opts = { reach: 16, max: 14, gain: 1, stiff: 0.28, damp: 0.72 };
+        const paths = [...svg.querySelectorAll("path.string-line")];
+        const frets = [...svg.querySelectorAll("line.fret-mark")];
+        const dots = [...svg.querySelectorAll("circle.fret-dot")];
+        const n = paths.length;
+        const strings = paths.map((p, i) => ({
+          p,
+          i,
+          w: Number(p.getAttribute("data-w")) || 1.35,
+          y: 0,
+          off: 0,
+          v: 0,
+          cx: 0,
+        }));
+
+        let w = 0;
+        let h = 0;
+        let left = 0;
+        let top = 0;
+        let startX = 0;
+        let mx = -1;
+        let my = -1;
+        let looping = false;
+        let nearest = -1;
+        let prevNearest = -1;
+
+        const measure = () => {
+          const r = bridge.getBoundingClientRect();
+          left = r.left;
+          top = r.top;
+          w = r.width;
+          h = r.height;
+          svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+
+          const head = bridge.querySelector(".guitar-headstock");
+          const img = bridge.querySelector(".guitar-headstock img");
+          const hr = head ? head.getBoundingClientRect() : null;
+          const ir = img ? img.getBoundingClientRect() : hr;
+
+          /* tuck under photo cut so SVG lines continue out of the wood */
+          startX = ir
+            ? Math.max(20, ir.right - left - 14)
+            : Math.max(20, w * 0.18);
+
+          /*
+            One-to-one with the 6 dark strings at the flipped PNG cut
+            (fractions of full headstock height, measured at the join).
+          */
+          const imgTop = ir ? ir.top - top : 0;
+          const imgH = ir ? ir.height : h;
+          const cutFracs = [0.256, 0.326, 0.393, 0.459, 0.53, 0.586];
+          /* bottom treble (#1) only — tiny nudge down to match photo */
+          const cutNudge = [0, 0, 0, 0, 0, 1.4];
+          strings.forEach((s, i) => {
+            const f = cutFracs[i] ?? cutFracs[cutFracs.length - 1];
+            s.y = imgTop + imgH * f + (cutNudge[i] || 0);
+            s.p.style.strokeWidth = `${s.w}px`;
+          });
+          const y0 = strings[0].y;
+          const y1 = strings[n - 1].y;
+
+          if (hit) {
+            hit.style.left = `${Math.max(0, startX)}px`;
+            const pad = opts.reach + 10;
+            const hitTop = Math.max(0, y0 - pad);
+            const hitBot = Math.min(h, y1 + pad);
+            hit.style.top = `${hitTop}px`;
+            hit.style.height = `${Math.max(24, hitBot - hitTop)}px`;
+          }
+
+          const span = Math.max(40, w - startX);
+          const fretTop = y0 - h * 0.04;
+          const fretBot = y1 + h * 0.04;
+          const fretXs = [0.1, 0.24, 0.4, 0.56, 0.72, 0.88];
+          frets.forEach((f, i) => {
+            const x = startX + (fretXs[i] || 0.5) * span;
+            f.setAttribute("x1", x);
+            f.setAttribute("x2", x);
+            f.setAttribute("y1", fretTop);
+            f.setAttribute("y2", fretBot);
+          });
+          const midY = (y0 + y1) / 2;
+          /* 12th-fret pair sits between strings, not outside the band */
+          const spread = (y1 - y0) * 0.22;
+          const dotMap = [
+            [0.32, midY],
+            [0.48, midY],
+            [0.64, midY - spread],
+            [0.64, midY + spread],
+            [0.8, midY],
+          ];
+          dots.forEach((d, i) => {
+            const m = dotMap[i];
+            if (!m) return;
+            d.setAttribute("cx", startX + m[0] * span);
+            d.setAttribute("cy", m[1]);
+            d.setAttribute("r", Math.max(1.6, h * 0.016));
+          });
+
+          strings.forEach((s) => {
+            if (!s.cx) s.cx = startX + span * 0.45;
+          });
+          draw();
+        };
+
+        const draw = () => {
+          strings.forEach((s) => {
+            const mid = Math.min(Math.max(s.cx, startX + 10), w - 8);
+            s.p.setAttribute(
+              "d",
+              `M${startX} ${s.y} Q ${mid} ${s.y + s.off} ${w} ${s.y}`
+            );
+          });
+        };
+
+        const tick = () => {
+          if (!bridge.isConnected) {
+            looping = false;
+            return;
+          }
+          let active = false;
+          const lane = Math.min(opts.max, h * 0.028);
+          strings.forEach((s) => {
+            s.v += -s.off * opts.stiff;
+            s.v *= opts.damp;
+            s.off += s.v;
+            if (Math.abs(s.off) < 0.08 && Math.abs(s.v) < 0.08) {
+              s.off = 0;
+              s.v = 0;
+            }
+            s.off = Math.max(-lane, Math.min(lane, s.off));
+            if (Math.abs(s.v) > 0.02 || Math.abs(s.off) > 0.02) active = true;
+          });
+
+          draw();
+          if (active) requestAnimationFrame(tick);
+          else looping = false;
+        };
+
+        const start = () => {
+          if (!looping) {
+            looping = true;
+            requestAnimationFrame(tick);
+          }
+        };
+
+        const pickNearest = (y) => {
+          let best = -1;
+          let bestD = Infinity;
+          strings.forEach((s, i) => {
+            const d = Math.abs(y - s.y);
+            if (d < bestD) {
+              bestD = d;
+              best = i;
+            }
+          });
+          return bestD <= opts.reach ? best : -1;
+        };
+
+        const brush = (e) => {
+          const prevMy = my;
+          mx = e.clientX - left;
+          my = e.clientY - top;
+          nearest = pickNearest(my);
+
+          if (nearest >= 0) {
+            const s = strings[nearest];
+            const crossed =
+              prevMy >= 0 && (prevMy - s.y) * (my - s.y) <= 0;
+            const entered = prevNearest !== nearest;
+            if (crossed || entered) {
+              const dir =
+                Math.sign(my - (prevMy >= 0 ? prevMy : s.y)) || 1;
+              const speed =
+                prevMy >= 0
+                  ? Math.min(1.4, Math.abs(my - prevMy) / 6)
+                  : 0.65;
+              s.cx = Math.min(Math.max(mx, startX + 10), w - 8);
+              s.v += dir * (5.5 + speed * 9);
+              s.off += dir * 1.15;
+              start();
+            }
+          }
+          prevNearest = nearest;
+        };
+
+        const clearPointer = () => {
+          mx = -1;
+          my = -1;
+          nearest = -1;
+          prevNearest = -1;
+          start();
+        };
+
+        const headImg = bridge.querySelector(".guitar-headstock img");
+        if (headImg) {
+          if (headImg.complete) measure();
+          else headImg.addEventListener("load", measure, { once: true });
+        }
+        measure();
+        new ResizeObserver(measure).observe(bridge);
+        window.addEventListener(
+          "scroll",
+          () => {
+            measure();
+          },
+          { passive: true }
+        );
+
+        hit.addEventListener("pointermove", brush, { passive: true });
+        hit.addEventListener("pointerleave", clearPointer);
+      }
+    })();
+  </script>
+</body>
+</html>
