@@ -277,12 +277,11 @@
       to { opacity: 1; }
     }
 
-    /* Footer guitar neck — photo headstock + fretted neck */
+    /* Footer guitar neck — thin fretted bar (no photo headstock) */
     .footer-staff {
       position: relative;
-      height: clamp(110px, 14vh, 140px);
-      overflow: visible;
-      /* bottom solid brown → top soft brown (never full black/transparent) */
+      height: clamp(40px, 5.5vh, 54px);
+      overflow: hidden;
       background:
         linear-gradient(
           0deg,
@@ -294,40 +293,16 @@
       border-bottom: 1px solid rgba(197, 165, 114, 0.16);
       border-top: 0;
     }
-    .footer-staff .guitar-headstock {
+    .footer-staff .guitar-nut {
       position: absolute;
-      z-index: 6;
+      z-index: 4;
       left: 0;
-      top: 82%;
-      transform: translateY(-50%) scale(1.4);
-      transform-origin: left center;
-      height: clamp(118px, 15.5vh, 158px);
-      width: auto;
+      top: 6%;
+      bottom: 6%;
+      width: 4px;
+      background: linear-gradient(90deg, #d8c4a0, #a89068 55%, #7a6548);
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.35);
       pointer-events: none;
-      filter: drop-shadow(8px 3px 16px rgba(0, 0, 0, 0.35));
-    }
-    .footer-staff .guitar-headstock img {
-      height: 100%;
-      width: auto;
-      display: block;
-      /* tip left, nut toward frets */
-      transform: scaleX(-1);
-      transform-origin: center;
-      user-select: none;
-      -webkit-user-drag: none;
-      /* very slight top soft-edge — keep wood visible */
-      -webkit-mask-image: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.72) 0%,
-        #000 10%,
-        #000 100%
-      );
-      mask-image: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.72) 0%,
-        #000 10%,
-        #000 100%
-      );
     }
     .footer-staff .strings {
       position: absolute;
@@ -339,7 +314,7 @@
     .footer-staff .strings-hit {
       position: absolute;
       z-index: 3;
-      left: clamp(140px, 18vw, 260px);
+      left: 0;
       right: 0;
       /* top/height set in JS to cover all 6 strings */
       top: 0;
@@ -1842,7 +1817,8 @@
       max-width: var(--max);
       margin: 0 auto;
       display: grid;
-      gap: 2.5rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem 1.25rem;
     }
     @media (min-width: 800px) {
       .site-footer-inner {
@@ -2450,29 +2426,27 @@
 
   <footer class="site-footer">
     <div class="footer-staff" id="stringsBridge" aria-label="دسته گیتار">
-      <div class="guitar-headstock" aria-hidden="true">
-        <img src="assets/guitar-headstock.png" alt="" width="1200" height="642" />
-      </div>
+      <div class="guitar-nut" aria-hidden="true"></div>
       <div class="strings" aria-hidden="true">
-        <svg class="fstrings" id="stringsSvg" viewBox="0 0 1000 100" preserveAspectRatio="none">
-          <line class="fret-mark" x1="120" y1="14" x2="120" y2="86" />
-          <line class="fret-mark" x1="250" y1="14" x2="250" y2="86" />
-          <line class="fret-mark" x1="390" y1="14" x2="390" y2="86" />
-          <line class="fret-mark" x1="540" y1="14" x2="540" y2="86" />
-          <line class="fret-mark" x1="700" y1="14" x2="700" y2="86" />
-          <line class="fret-mark" x1="860" y1="14" x2="860" y2="86" />
-          <circle class="fret-dot" cx="320" cy="50" r="2.2" />
-          <circle class="fret-dot" cx="465" cy="50" r="2.2" />
-          <circle class="fret-dot" cx="620" cy="34" r="1.8" />
-          <circle class="fret-dot" cx="620" cy="66" r="1.8" />
-          <circle class="fret-dot" cx="780" cy="50" r="2.2" />
-          <!-- top→bottom: bass 6–4 thick, treble 3–1 thin -->
-          <path class="string-line" data-w="2.45" d="M0 22 H1000" />
-          <path class="string-line" data-w="2.05" d="M0 34 H1000" />
-          <path class="string-line" data-w="1.65" d="M0 46 H1000" />
-          <path class="string-line" data-w="1.05" d="M0 58 H1000" />
-          <path class="string-line" data-w="0.85" d="M0 70 H1000" />
-          <path class="string-line" data-w="0.55" d="M0 82 H1000" />
+        <svg class="fstrings" id="stringsSvg" viewBox="0 0 1000 90" preserveAspectRatio="none">
+          <line class="fret-mark" x1="120" y1="12" x2="120" y2="78" />
+          <line class="fret-mark" x1="250" y1="12" x2="250" y2="78" />
+          <line class="fret-mark" x1="390" y1="12" x2="390" y2="78" />
+          <line class="fret-mark" x1="540" y1="12" x2="540" y2="78" />
+          <line class="fret-mark" x1="700" y1="12" x2="700" y2="78" />
+          <line class="fret-mark" x1="860" y1="12" x2="860" y2="78" />
+          <circle class="fret-dot" cx="320" cy="45" r="2.2" />
+          <circle class="fret-dot" cx="465" cy="45" r="2.2" />
+          <circle class="fret-dot" cx="620" cy="30" r="1.8" />
+          <circle class="fret-dot" cx="620" cy="60" r="1.8" />
+          <circle class="fret-dot" cx="780" cy="45" r="2.2" />
+          <!-- top→bottom: bass→treble, scaled for thin neck -->
+          <path class="string-line" data-w="1.55" d="M0 16 H1000" />
+          <path class="string-line" data-w="1.35" d="M0 28 H1000" />
+          <path class="string-line" data-w="1.15" d="M0 40 H1000" />
+          <path class="string-line" data-w="0.9" d="M0 52 H1000" />
+          <path class="string-line" data-w="0.7" d="M0 64 H1000" />
+          <path class="string-line" data-w="0.55" d="M0 76 H1000" />
         </svg>
       </div>
       <div class="strings-hit" id="stringsHit"></div>
@@ -2709,14 +2683,14 @@
         }, { passive: true });
       }
 
-      /* Footer guitar neck — photo headstock + snappy pluck */
+      /* Footer guitar neck — thin bar + brush pluck */
       const bridge = document.getElementById("stringsBridge");
       const hit = document.getElementById("stringsHit");
       const svg = document.getElementById("stringsSvg");
       const wantMotion = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 
       if (bridge && svg && hit && wantMotion && !reduce) {
-        const opts = { reach: 16, max: 14, gain: 1, stiff: 0.28, damp: 0.72 };
+        const opts = { reach: 7, max: 7, gain: 1, stiff: 0.28, damp: 0.72 };
         const paths = [...svg.querySelectorAll("path.string-line")];
         const frets = [...svg.querySelectorAll("line.fret-mark")];
         const dots = [...svg.querySelectorAll("circle.fret-dot")];
@@ -2750,40 +2724,25 @@
           h = r.height;
           svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
 
-          const head = bridge.querySelector(".guitar-headstock");
-          const img = bridge.querySelector(".guitar-headstock img");
-          const hr = head ? head.getBoundingClientRect() : null;
-          const ir = img ? img.getBoundingClientRect() : hr;
-
-          /* tuck under photo cut so SVG lines continue out of the wood */
-          startX = ir
-            ? Math.max(20, ir.right - left - 14)
-            : Math.max(20, w * 0.18);
-
-          /*
-            One-to-one with the 6 dark strings at the flipped PNG cut
-            (fractions of full headstock height, measured at the join).
-          */
-          const imgTop = ir ? ir.top - top : 0;
-          const imgH = ir ? ir.height : h;
-          const cutFracs = [0.256, 0.326, 0.393, 0.459, 0.53, 0.586];
-          /* bottom treble (#1) only — tiny nudge down to match photo */
-          const cutNudge = [0, 0, 0, 0, 0, 1.4];
+          /* fill the thin neck — little gap to top/bottom edge */
+          startX = 6;
+          const y0 = h * 0.08;
+          const y1 = h * 0.92;
+          const gap = (y1 - y0) / Math.max(n - 1, 1);
+          opts.reach = Math.max(4, gap * 0.48);
+          opts.max = Math.max(4, gap * 0.85);
           strings.forEach((s, i) => {
-            const f = cutFracs[i] ?? cutFracs[cutFracs.length - 1];
-            s.y = imgTop + imgH * f + (cutNudge[i] || 0);
+            s.y = y0 + gap * i;
             s.p.style.strokeWidth = `${s.w}px`;
           });
-          const y0 = strings[0].y;
-          const y1 = strings[n - 1].y;
 
           if (hit) {
-            hit.style.left = `${Math.max(0, startX)}px`;
-            const pad = opts.reach + 10;
+            hit.style.left = `0px`;
+            const pad = opts.reach + 4;
             const hitTop = Math.max(0, y0 - pad);
             const hitBot = Math.min(h, y1 + pad);
             hit.style.top = `${hitTop}px`;
-            hit.style.height = `${Math.max(24, hitBot - hitTop)}px`;
+            hit.style.height = `${Math.max(20, hitBot - hitTop)}px`;
           }
 
           const span = Math.max(40, w - startX);
@@ -2798,7 +2757,6 @@
             f.setAttribute("y2", fretBot);
           });
           const midY = (y0 + y1) / 2;
-          /* 12th-fret pair sits between strings, not outside the band */
           const spread = (y1 - y0) * 0.22;
           const dotMap = [
             [0.32, midY],
@@ -2812,7 +2770,7 @@
             if (!m) return;
             d.setAttribute("cx", startX + m[0] * span);
             d.setAttribute("cy", m[1]);
-            d.setAttribute("r", Math.max(1.6, h * 0.016));
+            d.setAttribute("r", Math.max(1.4, h * 0.018));
           });
 
           strings.forEach((s) => {
@@ -2837,7 +2795,7 @@
             return;
           }
           let active = false;
-          const lane = Math.min(opts.max, h * 0.028);
+          const lane = opts.max;
           strings.forEach((s) => {
             s.v += -s.off * opts.stiff;
             s.v *= opts.damp;
@@ -2910,11 +2868,6 @@
           start();
         };
 
-        const headImg = bridge.querySelector(".guitar-headstock img");
-        if (headImg) {
-          if (headImg.complete) measure();
-          else headImg.addEventListener("load", measure, { once: true });
-        }
         measure();
         new ResizeObserver(measure).observe(bridge);
         window.addEventListener(
